@@ -55,9 +55,11 @@ type HomeProps = {
   onAyurvedaClick?: () => void;
   onRoomsClick?: () => void;
   onWellnessClick?: () => void;
+  onGuestServicesClick?: () => void;
+  onFacilitiesClick?: () => void;
 };
 
-const Home: React.FC<HomeProps> = ({ onWelcomeClick, onGalleryClick, onMenuClick, onOffersClick, onExperienceClick, onFoodAndDrinksClick, onAboutClick, onOtherDestinationsClick, onAyurvedaClick, onRoomsClick, onWellnessClick }) => {
+const Home: React.FC<HomeProps> = ({ onWelcomeClick, onGalleryClick, onMenuClick, onOffersClick, onExperienceClick, onFoodAndDrinksClick, onAboutClick, onOtherDestinationsClick, onAyurvedaClick, onRoomsClick, onWellnessClick, onGuestServicesClick, onFacilitiesClick }) => {
   const [showScrollArrow, setShowScrollArrow] = useState(true);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -132,8 +134,8 @@ const Home: React.FC<HomeProps> = ({ onWelcomeClick, onGalleryClick, onMenuClick
 
         <div className="grid three-cols">
           <Card title="About" image={aboutImage} size="small" onClick={onAboutClick} />
-          <Card title="Guest Services" image={guestServicesImage} size="small" />
-          <Card title="Facilities" image={facilitiesImage} size="small" />
+          <Card title="Guest Services" image={guestServicesImage} size="small" onClick={onGuestServicesClick} />
+          <Card title="Facilities" image={facilitiesImage} size="small" onClick={onFacilitiesClick} />
         </div>
 
         <Card 

@@ -8,7 +8,17 @@ type AyurvedaProps = {
 };
 
 const Ayurveda: React.FC<AyurvedaProps> = ({ onBack }) => {
-  const firstContent = `Healthy living is about living wholly, in harmony with nature, our environment and our own core self. It is about integrating our mind, body and soul. Ayurveda, the ancient Indian system of healing and living, is the only one of its kind in the world that addresses the physical, emotional and spiritual aspects of our well being. With a therapeutic approach that gets to the core of our personality, behaviour and lifestyle, Ayurveda is more than a mere system for curing ailments; it in fact charts out a complete lifestyle for disease-free living.`;
+  const firstContent = `The Ayurveda treatments at Marari Beach Resort are based on the Kalari Marma treatment style, developed centuries
+ago in Kerala for Kalaripayattu warriors. In the martial art of Kalaripayattu, the warrior is trained to attack particular
+Marma points in his opponent. Marmas are the vital points in the body where the life force energy is concentrated.
+These are located where the flesh, veins, arteries, tendons, bones and joints meet. They may also be described as the
+junctions where Vata, Pitta and Kapha meet; where Sattwa, Rajas and Tams meet; or where Eternity and Relativity
+meet. Kalari Marma combines Ayurveda with the compassion, teachings and discipline of a Kalari warrior, specifically
+with regard to keeping the prana flow in the body optimum. In this style, you are given an uzhichil or general body
+massage, which is a combination of 156 strokes for the body and 66 strokes for the head. The strokes are designed
+keeping in mind the 72000 energy channels and 108 vital points, with an objective to improve blood circulation, muscle
+tone and overall wellness.
+`;
 
   const secondContent = `CGH Earth Ayurveda is part of the wellness wing of CGH Earth, who are the pioneers in responsible tourism in India, with a credible background spanning over five decades in offering uniquely immersive travel experiences. CGH Earth Ayurveda offers healthcare service which are about complete well-being based on the traditional and authentic Ayurvedic system of healing. What we offer to anyone seeking holistic healing is something that is rooted in the group's own core values.`;
 

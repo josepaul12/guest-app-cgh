@@ -1,4 +1,4 @@
-.ayurveda-page {
+.activities-page {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,7 +12,7 @@
   flex-direction: column;
 }
 
-.ayurveda-background {
+.activities-background {
   position: fixed;
   top: 0;
   left: 0;
@@ -22,7 +22,7 @@
   z-index: 1;
 }
 
-.ayurveda-overlay {
+.activities-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -32,7 +32,7 @@
   z-index: 2;
 }
 
-.ayurveda-topbar {
+.activities-topbar {
   position: relative;
   z-index: 5;
   display: flex;
@@ -44,7 +44,7 @@
   background: #ffffff;
 }
 
-.ayurveda-back-button {
+.activities-back-button {
   background: none;
   border: none;
   color: #302F27;
@@ -55,7 +55,7 @@
   justify-content: center;
 }
 
-.ayurveda-title {
+.activities-title {
   font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
   font-size: 15px;
   font-weight: 400;
@@ -66,7 +66,7 @@
   margin: 0;
 }
 
-.ayurveda-call-button {
+.activities-call-button {
   background: none;
   border: none;
   color: #302F27;
@@ -77,7 +77,7 @@
   justify-content: center;
 }
 
-.ayurveda-content {
+.activities-content {
   position: relative;
   z-index: 3;
   flex: 1;
@@ -92,23 +92,51 @@
   overflow-y: auto;
 }
 
-.ayurveda-hero-image-container {
+.activities-hero-image-container {
   width: 100%;
   margin-bottom: 0;
 }
 
-.ayurveda-hero-image {
+.activities-hero-image {
   width: 100%;
   height: auto;
   object-fit: cover;
   display: block;
 }
 
-.ayurveda-section {
+.activities-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   background: #ffffff;
 }
 
-.ayurveda-heading {
+.activity-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  margin-bottom: 0;
+}
+
+.activity-image-container {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.activity-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.activity-content {
+  padding: 24px 20px;
+  background: #ffffff;
+}
+
+.activity-title {
   font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
   font-size: 24px;
   font-weight: 400;
@@ -116,16 +144,10 @@
   letter-spacing: 0.02em;
   color: #CAA593;
   text-align: center;
-  margin: 0;
-  padding: 24px 20px 16px;
+  margin: 0 0 16px;
 }
 
-.ayurveda-text-content {
-  padding: 0 20px 24px;
-  background: #ffffff;
-}
-
-.ayurveda-description {
+.activity-description {
   font-family: 'Avenir Next', 'Avenir', sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -135,102 +157,41 @@
   margin: 0;
 }
 
-.ayurveda-image-container {
-  width: 100%;
-  padding: 0 20px 24px;
-  background: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ayurveda-section-image {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
-.ayurveda-view-menu {
-  padding: 0 20px 24px;
-  background: #ffffff;
-}
-
-.ayurveda-view-menu-button {
-  width: 100%;
-  padding: 16px 24px;
-  background: #CAA593;
-  border: none;
-  border-radius: 8px;
-  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: #FFFFFF;
-  text-align: center;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.ayurveda-view-menu-button:hover {
-  background: #C4B5A9;
-  transform: translateY(-1px);
-}
-
-.ayurveda-view-menu-button:active {
-  transform: translateY(0);
-  background: #B4A599;
-}
-
 @media (max-width: 375px) {
-  .ayurveda-content {
+  .activities-content {
     padding: 0 0 100px;
   }
 
-  .ayurveda-heading {
-    padding: 20px 15px 12px;
+  .activity-content {
+    padding: 20px 15px;
+  }
+
+  .activity-title {
     font-size: 22px;
+    margin-bottom: 12px;
   }
 
-  .ayurveda-text-content {
-    padding: 0 15px 20px;
-  }
-
-  .ayurveda-image-container {
-    padding: 0 15px 20px;
-  }
-
-  .ayurveda-view-menu {
-    padding: 0 15px 20px;
-  }
-
-  .ayurveda-view-menu-button {
-    padding: 14px 20px;
-    font-size: 14px;
-  }
-
-  .ayurveda-description {
+  .activity-description {
     font-size: 13px;
   }
 }
 
 /* Center the page on larger screens */
 @media (min-width: 376px) {
-  .ayurveda-page {
+  .activities-page {
     left: 50%;
     transform: translateX(-50%);
     max-width: 375px;
   }
   
-  .ayurveda-background {
+  .activities-background {
     left: 50%;
     transform: translateX(-50%);
     max-width: 375px;
     width: 375px;
   }
   
-  .ayurveda-overlay {
+  .activities-overlay {
     left: 50%;
     transform: translateX(-50%);
     max-width: 375px;

@@ -71,19 +71,7 @@ const Gallery: React.FC<GalleryProps> = ({ onBack }) => {
 
       <div className="gallery-content">
         <div className="gallery-grid">
-          {/* YouTube Video */}
-          <div className="gallery-item gallery-item-video gallery-item-wide">
-            <div className="gallery-video-container">
-              <iframe
-                className="gallery-video"
-                src="https://www.youtube.com/embed/HUJtu0__pEE"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
+          
 
           {galleryImages.map((image, index) => (
             <div 
@@ -99,6 +87,19 @@ const Gallery: React.FC<GalleryProps> = ({ onBack }) => {
               <img src={image.src} alt={image.alt} />
             </div>
           ))}
+          {/* YouTube Video */}
+          <div className="gallery-item gallery-item-video gallery-item-wide">
+            <div className="gallery-video-container">
+              <iframe
+                className="gallery-video"
+                src="https://www.youtube.com/embed/HUJtu0__pEE"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -35,9 +35,15 @@ const Welcome: React.FC<WelcomeProps> = ({ onBack, onOurCollectionClick }) => {
         </p>
         
         <div className="welcome-buttons">
-          <button className="welcome-button">Brand</button>
-          <button className="welcome-button" onClick={onOurCollectionClick}>Our collection</button>
-          <button className="welcome-button">Core values</button>
+          <button className="welcome-button">
+            <span>Brand</span>
+          </button>
+          <button className="welcome-button" onClick={onOurCollectionClick}>
+            <span>Our collection</span>
+          </button>
+          <button className="welcome-button">
+            <span>Core values</span>
+          </button>
         </div>
       </div>
     </div>

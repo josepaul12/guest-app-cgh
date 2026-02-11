@@ -5,9 +5,10 @@ import experiencesImage from '../assets/images/imagesmarari/Experiences.jpg';
 type ExperienceProps = {
   onBack?: () => void;
   onCuratedExperiencesClick?: () => void;
+  onActivitiesClick?: () => void;
 };
 
-const Experience: React.FC<ExperienceProps> = ({ onBack, onCuratedExperiencesClick }) => {
+const Experience: React.FC<ExperienceProps> = ({ onBack, onCuratedExperiencesClick, onActivitiesClick }) => {
   const descriptionText = `Marari Beach offers a unique opportunity to immerse yourself in the local culture, relax in serene surroundings, savor authentic cuisine, and explore diverse ecosystems. Whether you're seeking adventure, tranquility, or cultural enrichment, our experiences are designed to help you soak in space and silence.`;
 
   const actionButtons = [
@@ -55,7 +56,11 @@ const Experience: React.FC<ExperienceProps> = ({ onBack, onCuratedExperiencesCli
               key={index} 
               className="experience-action-button"
               aria-label={buttonText}
-              onClick={buttonText === 'Curated Experiences' ? onCuratedExperiencesClick : undefined}
+              onClick={
+                buttonText === 'Curated Experiences' ? onCuratedExperiencesClick :
+                buttonText === 'In-house Activities' ? onActivitiesClick :
+                undefined
+              }
             >
               {buttonText}
             </button>

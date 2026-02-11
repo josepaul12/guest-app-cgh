@@ -17,6 +17,10 @@ import OtherDestinations from './pages/other-destinations.tsx';
 import Ayurveda from './pages/ayurveda.tsx';
 import Rooms from './pages/rooms.tsx';
 import Wellness from './pages/wellness.tsx';
+import Activities from './pages/activities.tsx';
+import GuestServices from './pages/guest-services.tsx';
+import Facilities from './pages/facilities.tsx';
+import Message from './pages/message.tsx';
 import HousekeepingPage from './components/HousekeepingPage';
 import BottomNavigation from './components/BottomNavigation';
 import './App.css';
@@ -35,7 +39,7 @@ function App() {
     if (tab === 'home') {
       setCurrentPage('home');
     } else if (tab === 'message') {
-      setCurrentPage('housekeeping');
+      setCurrentPage('message');
     } else if (tab === 'highlights') {
       setCurrentPage('highlights');
     }
@@ -141,10 +145,28 @@ function App() {
     setActiveTab('');
   };
 
+  const handleActivitiesClick = () => {
+    setCurrentPage('activities');
+    setActiveTab('');
+  };
+
+  const handleGuestServicesClick = () => {
+    setCurrentPage('guest-services');
+    setActiveTab('');
+  };
+
+  const handleFacilitiesClick = () => {
+    setCurrentPage('facilities');
+    setActiveTab('');
+  };
+
   // Determine activeTab based on currentPage
   const getActiveTab = () => {
     if (currentPage === 'home') {
       return 'home';
+    }
+    if (currentPage === 'message') {
+      return 'message';
     }
     return '';
   };
@@ -166,7 +188,9 @@ function App() {
       case 'offers':
         return <Offers onBack={handleBackToHome} />;
       case 'experience':
-        return <Experience onBack={handleBackToHome} onCuratedExperiencesClick={handleCuratedExperiencesClick} />;
+        return <Experience onBack={handleBackToHome} onCuratedExperiencesClick={handleCuratedExperiencesClick} onActivitiesClick={handleActivitiesClick} />;
+      case 'activities':
+        return <Activities onBack={handleBackToExperience} />;
       case 'curated-experiences':
         return <CuratedExperiences onBack={handleBackToExperience} onFishingVillageTourClick={handleFishingVillageTourClick} />;
       case 'fishing-village-tour':
@@ -185,12 +209,18 @@ function App() {
         return <Rooms onBack={handleBackToHome} />;
       case 'wellness':
         return <Wellness onBack={handleBackToHome} />;
+      case 'guest-services':
+        return <GuestServices onBack={handleBackToHome} />;
+      case 'facilities':
+        return <Facilities onBack={handleBackToHome} />;
+      case 'message':
+        return <Message onBack={handleBackToHome} />;
       case 'housekeeping':
         return <HousekeepingPage onBack={handleBackToHome} />;
       case 'highlights':
         return <div className="highlights-page">Highlights page coming soon...</div>;
       default:
-        return <Home onWelcomeClick={handleWelcomeClick} onGalleryClick={handleGalleryClick} onMenuClick={handleMenuClick} onOffersClick={handleOffersClick} onExperienceClick={handleExperienceClick} onFoodAndDrinksClick={handleFoodAndDrinksClick} onAboutClick={handleAboutClick} onOtherDestinationsClick={handleOtherDestinationsClick} onAyurvedaClick={handleAyurvedaClick} onRoomsClick={handleRoomsClick} onWellnessClick={handleWellnessClick} />;
+        return <Home onWelcomeClick={handleWelcomeClick} onGalleryClick={handleGalleryClick} onMenuClick={handleMenuClick} onOffersClick={handleOffersClick} onExperienceClick={handleExperienceClick} onFoodAndDrinksClick={handleFoodAndDrinksClick} onAboutClick={handleAboutClick} onOtherDestinationsClick={handleOtherDestinationsClick} onAyurvedaClick={handleAyurvedaClick} onRoomsClick={handleRoomsClick} onWellnessClick={handleWellnessClick} onGuestServicesClick={handleGuestServicesClick} onFacilitiesClick={handleFacilitiesClick} />;
     }
   };
 
