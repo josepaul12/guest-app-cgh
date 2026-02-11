@@ -1,0 +1,269 @@
+.about-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #F5F1ED;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #F5F1ED;
+  z-index: 1;
+}
+
+.about-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 2;
+}
+
+.about-topbar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 12px;
+  min-height: 56px;
+  flex-shrink: 0;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.about-back-button {
+  background: none;
+  border: none;
+  color: #302F27;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-title {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.067em;
+  letter-spacing: 0.04em;
+  color: #302F27;
+  text-align: center;
+  margin: 0;
+}
+
+.about-call-button {
+  background: none;
+  border: none;
+  color: #302F27;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-content {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 100px;
+  max-width: 375px;
+  margin: 0 auto;
+  width: 100%;
+  background: #F5F1ED;
+  overflow-y: auto;
+}
+
+.about-hero-image-container {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.about-hero-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.about-intro-text {
+  padding: 24px 20px;
+  background: #F5F1ED;
+}
+
+.about-paragraph {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6em;
+  color: #302F27;
+  text-align: left;
+  margin: 0 0 20px 0;
+}
+
+.about-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.about-amenities-section {
+  padding: 0 20px 24px;
+  background: #F5F1ED;
+}
+
+.about-amenities-heading {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2em;
+  letter-spacing: 0.04em;
+  color: #302F27;
+  text-align: center;
+  margin: 0 0 24px 0;
+}
+
+.about-amenities-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.about-amenity-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.about-amenity-icon {
+  width: 60px;
+  height: 60px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #D4C5B9;
+}
+
+.about-amenity-icon-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.about-amenity-label {
+  font-family: 'Avenir Next', 'Avenir', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.2em;
+  letter-spacing: 0.5px;
+  color: #302F27;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.about-weather-section {
+  padding: 0 20px 24px;
+  background: #F5F1ED;
+}
+
+.about-weather-banner {
+  background: #D4C5B9;
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-weather-banner-text {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.about-second-image-container {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.about-second-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 375px) {
+  .about-content {
+    padding: 0 0 100px;
+  }
+
+  .about-intro-text,
+  .about-amenities-section,
+  .about-weather-section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .about-amenities-grid {
+    gap: 20px;
+  }
+
+  .about-amenity-icon {
+    width: 55px;
+    height: 55px;
+  }
+
+  .about-amenity-label {
+    font-size: 10px;
+  }
+
+  .about-paragraph {
+    font-size: 13px;
+  }
+}
+
+/* Center the page on larger screens */
+@media (min-width: 376px) {
+  .about-page {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+  }
+  
+  .about-background {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+  
+  .about-overlay {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+}

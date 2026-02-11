@@ -1,0 +1,188 @@
+.wellness-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.wellness-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 1;
+}
+
+.wellness-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 2;
+}
+
+.wellness-topbar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 12px;
+  min-height: 56px;
+  flex-shrink: 0;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.wellness-back-button {
+  background: none;
+  border: none;
+  color: #302F27;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wellness-title {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.067em;
+  letter-spacing: 0.04em;
+  color: #302F27;
+  text-align: center;
+  margin: 0;
+}
+
+.wellness-call-button {
+  background: none;
+  border: none;
+  color: #302F27;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wellness-content {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 100px;
+  max-width: 375px;
+  margin: 0 auto;
+  width: 100%;
+  background: #ffffff;
+  overflow-y: auto;
+}
+
+.wellness-section {
+  margin-bottom: 0;
+}
+
+.wellness-image-container {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.wellness-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.wellness-text-section {
+  padding: 24px 20px;
+  background: #ffffff;
+}
+
+.wellness-section-heading {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3em;
+  letter-spacing: 0.02em;
+  color: #CAA593;
+  text-align: left;
+  margin: 0 0 16px 0;
+}
+
+.wellness-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wellness-paragraph {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6em;
+  color: #302F27;
+  text-align: left;
+  margin: 0;
+}
+
+@media (max-width: 375px) {
+  .wellness-content {
+    padding: 0 0 100px;
+  }
+
+  .wellness-text-section {
+    padding: 20px 15px;
+  }
+
+  .wellness-section-heading {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .wellness-paragraph {
+    font-size: 13px;
+  }
+
+  .wellness-text-content {
+    gap: 12px;
+  }
+}
+
+/* Center the page on larger screens */
+@media (min-width: 376px) {
+  .wellness-page {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+  }
+  
+  .wellness-background {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+  
+  .wellness-overlay {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+}

@@ -1,0 +1,207 @@
+.offers-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.offers-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 1;
+}
+
+.offers-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 2;
+}
+
+.offers-topbar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 23px;
+  min-height: 56px;
+  flex-shrink: 0;
+  background: #ffffff;
+}
+
+.offers-back-button {
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.offers-title {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.067em;
+  letter-spacing: 0.04em;
+  color: #000000;
+  text-align: center;
+  margin: 0;
+}
+
+.offers-call-button {
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.offers-content {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0 100px;
+  max-width: 375px;
+  margin: 0 auto;
+  width: 100%;
+  background: #ffffff;
+  overflow-y: auto;
+}
+
+.offers-offer {
+  margin-bottom: 20px;
+  padding: 0 20px;
+  position: relative;
+}
+
+.offers-offer:last-child {
+  margin-bottom: 20px;
+}
+
+.offers-offer-image-container {
+  width: 100%;
+  position: relative;
+  margin-bottom: 0;
+  border-radius: 0;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.offers-offer-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.offers-offer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.85) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.offers-offer-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.offers-know-more-button {
+  background: #1CCD92;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 20px;
+  font-family: 'Avenir Next', 'Avenir', sans-serif;
+  font-size: 12px;
+  font-weight: 200;
+  cursor: pointer;
+  align-self: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  
+  letter-spacing: 0.5px;
+}
+
+.offers-know-more-button:hover {
+  background: #1CCD92;
+  transform: translateY(-1px);
+}
+
+.offers-know-more-button:active {
+  transform: translateY(0);
+  background: #1CCD92;
+}
+
+@media (max-width: 375px) {
+  .offers-content {
+    padding: 15px 0 100px;
+  }
+
+  .offers-offer {
+    padding: 0 15px;
+    margin-bottom: 15px;
+  }
+
+  .offers-offer-content {
+    padding: 15px;
+  }
+}
+
+/* Center the page on larger screens */
+@media (min-width: 376px) {
+  .offers-page {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+  }
+  
+  .offers-background {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+  
+  .offers-overlay {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+}

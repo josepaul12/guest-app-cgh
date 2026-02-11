@@ -1,0 +1,162 @@
+.fishing-village-tour-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.fishing-village-tour-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 1;
+}
+
+.fishing-village-tour-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 2;
+}
+
+.fishing-village-tour-topbar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 12px;
+  min-height: 56px;
+  flex-shrink: 0;
+  background: #ffffff;
+}
+
+.fishing-village-tour-back-button {
+  background: none;
+  border: none;
+  color: #302F27;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fishing-village-tour-title {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.067em;
+  letter-spacing: 0.04em;
+  color: #302F27;
+  text-align: center;
+  margin: 0;
+  text-transform: lowercase;
+}
+
+.fishing-village-tour-call-button {
+  background: none;
+  border: none;
+  color: #302F27;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fishing-village-tour-content {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 100px;
+  max-width: 375px;
+  margin: 0 auto;
+  width: 100%;
+  background: #ffffff;
+  overflow-y: auto;
+}
+
+.fishing-village-tour-hero-image-container {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.fishing-village-tour-hero-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.fishing-village-tour-text-content {
+  padding: 24px 20px;
+  background: #ffffff;
+}
+
+.fishing-village-tour-paragraph {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6em;
+  color: #302F27;
+  text-align: justify;
+  margin: 0 0 20px 0;
+}
+
+.fishing-village-tour-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 375px) {
+  .fishing-village-tour-content {
+    padding: 0 0 100px;
+  }
+
+  .fishing-village-tour-text-content {
+    padding: 20px 15px;
+  }
+
+  .fishing-village-tour-paragraph {
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+}
+
+/* Center the page on larger screens */
+@media (min-width: 376px) {
+  .fishing-village-tour-page {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+  }
+  
+  .fishing-village-tour-background {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+  
+  .fishing-village-tour-overlay {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+}

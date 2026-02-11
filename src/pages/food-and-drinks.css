@@ -1,0 +1,209 @@
+.food-and-drinks-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  margin: 0 auto;
+  background: transparent;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.food-and-drinks-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  filter: blur(2px);
+  opacity: 0.3;
+}
+
+.food-and-drinks-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 2;
+}
+
+.food-and-drinks-topbar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 12px;
+  min-height: 56px;
+  flex-shrink: 0;
+
+}
+
+.food-and-drinks-back-button {
+  background: none;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.food-and-drinks-title {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.067em;
+  letter-spacing: 0.04em;
+  color: #000000;
+  text-align: center;
+  margin: 0;
+}
+
+.food-and-drinks-call-button {
+  background: none;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.food-and-drinks-content {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0 100px;
+  max-width: 375px;
+  margin: 0 auto;
+  width: 95%;
+  background: transparent;
+  overflow-y: auto;
+}
+
+.food-and-drinks-card {
+  width: 100%;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.food-and-drinks-card:last-child {
+  margin-bottom: 0;
+}
+
+.food-and-drinks-card-background {
+  width: 100%;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.food-and-drinks-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.7) 100%);
+  z-index: 1;
+}
+
+.food-and-drinks-card-top-right {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.food-and-drinks-card-name {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2em;
+  color: #FFFFFF;
+  text-align: right;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.food-and-drinks-card-price {
+  font-family: 'Avenir Next', 'Avenir', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2em;
+  color: #FFFFFF;
+  text-align: right;
+  margin: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 375px) {
+  .food-and-drinks-content {
+    padding: 6px 0 100px;
+  }
+
+  .food-and-drinks-card {
+    margin-bottom: 6px;
+  }
+
+  .food-and-drinks-card-background {
+    height: 110px;
+  }
+
+  .food-and-drinks-card-top-right {
+    top: 10px;
+    right: 14px;
+    gap: 3px;
+  }
+
+  .food-and-drinks-card-name {
+    font-size: 15px;
+  }
+
+  .food-and-drinks-card-price {
+    font-size: 13px;
+  }
+}
+
+/* Center the page on larger screens */
+@media (min-width: 376px) {
+  .food-and-drinks-page {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+  }
+  
+  .food-and-drinks-background {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+  
+  .food-and-drinks-overlay {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+}

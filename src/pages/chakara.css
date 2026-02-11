@@ -1,0 +1,240 @@
+.chakara-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.chakara-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 1;
+}
+
+.chakara-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 2;
+}
+
+.chakara-topbar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 10px;
+  min-height: 56px;
+  flex-shrink: 0;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.chakara-back-button {
+  background: none;
+  border: none;
+  color: #302F27;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chakara-title {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.067em;
+  letter-spacing: 0.04em;
+  color: #302F27;
+  text-align: center;
+  margin: 0;
+}
+
+.chakara-call-button {
+  background: none;
+  border: none;
+  color: #302F27;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chakara-content {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 100px;
+  max-width: 375px;
+  margin: 0 auto;
+  width: 100%;
+  background: #ffffff;
+  overflow-y: auto;
+}
+
+.chakara-hero-image-container {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.chakara-hero-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.chakara-description-section {
+  padding: 24px 20px;
+  background: #ffffff;
+}
+
+.chakara-description {
+  font-family: 'Avenir Next', 'Avenir', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6em;
+  color: #302F27;
+  text-align: left;
+  margin: 0;
+}
+
+.chakara-timings-section,
+.chakara-dress-code-section {
+  padding: 0 20px 24px;
+  background: #ffffff;
+}
+
+.chakara-section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.chakara-section-icon {
+  flex-shrink: 0;
+  color: #D4C5B9;
+}
+
+.chakara-section-title {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3em;
+  letter-spacing: 0.02em;
+  color: #302F27;
+  text-align: left;
+  margin: 0;
+}
+
+.chakara-timings-list,
+.chakara-dress-code-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 28px;
+}
+
+.chakara-timing-item,
+.chakara-dress-code-item {
+  font-family: 'Avenir Next', 'Avenir', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6em;
+  color: #302F27;
+  text-align: left;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.chakara-timing-item::before,
+.chakara-dress-code-item::before {
+  content: '•';
+  position: absolute;
+  left: -16px;
+  color: #302F27;
+  font-size: 16px;
+}
+
+.chakara-timing-item:last-child,
+.chakara-dress-code-item:last-child {
+  margin-bottom: 0;
+}
+
+.chakara-dress-code-intro {
+  font-family: 'Avenir Next', 'Avenir', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6em;
+  color: #302F27;
+  text-align: left;
+  margin: 0 0 12px 0;
+}
+
+@media (max-width: 375px) {
+  .chakara-content {
+    padding: 0 0 100px;
+  }
+
+  .chakara-description-section,
+  .chakara-timings-section,
+  .chakara-dress-code-section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .chakara-description,
+  .chakara-timing-item,
+  .chakara-dress-code-item,
+  .chakara-dress-code-intro {
+    font-size: 13px;
+  }
+
+  .chakara-section-title {
+    font-size: 16px;
+  }
+}
+
+/* Center the page on larger screens */
+@media (min-width: 376px) {
+  .chakara-page {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+  }
+  
+  .chakara-background {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+  
+  .chakara-overlay {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+}
