@@ -1,0 +1,384 @@
+.housekeeping-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.housekeeping-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 1;
+}
+
+.housekeeping-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 2;
+}
+
+.housekeeping-topbar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 12px;
+  min-height: 56px;
+  flex-shrink: 0;
+  background: #ffffff;
+}
+
+.housekeeping-back-button {
+  background: none;
+  border: none;
+  color: #302F27;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.housekeeping-title {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.067em;
+  letter-spacing: 0.04em;
+  color: #CAA593;
+  text-align: center;
+  margin: 0;
+}
+
+.housekeeping-call-button {
+  background: none;
+  border: none;
+  color: #302F27;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.housekeeping-content {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px 180px;
+  max-width: 375px;
+  margin: 0 auto;
+  width: 100%;
+  background: #ffffff;
+  overflow-y: auto;
+}
+
+.housekeeping-header {
+  margin-bottom: 24px;
+}
+
+.housekeeping-subtitle {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4em;
+  letter-spacing: 0.04em;
+  color: #CAA593;
+  text-align: left;
+  margin: 0 0 8px;
+}
+
+.housekeeping-choose-text {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4em;
+  letter-spacing: 0.04em;
+  color: #CAA593;
+  text-align: left;
+  margin: 0;
+}
+
+.housekeeping-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.housekeeping-service-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 12px;
+  background: transparent;
+  border: 1px solid #CAA593;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #CAA593;
+  min-height: 100px;
+}
+
+.housekeeping-service-button:hover {
+  background: rgba(202, 165, 147, 0.1);
+}
+
+.housekeeping-service-button.selected {
+  background: #CAA593;
+  color: #ffffff;
+}
+
+.housekeeping-service-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  width: 32px;
+  height: 32px;
+}
+
+.housekeeping-service-label {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.housekeeping-room-section {
+  margin-bottom: 24px;
+}
+
+.housekeeping-room-label {
+  display: block;
+  font-family: 'Avenir Next', 'Avenir', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5em;
+  color: #302F27;
+  text-align: left;
+  margin: 0 0 8px;
+}
+
+.housekeeping-room-input {
+  width: 100%;
+  padding: 12px 16px;
+  background: #FFFFFF;
+  border: 1px solid #CAA593;
+  border-radius: 8px;
+  font-family: 'Avenir Next', 'Avenir', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5em;
+  color: #302F27;
+  box-sizing: border-box;
+}
+
+.housekeeping-room-input::placeholder {
+  color: rgba(48, 47, 39, 0.5);
+}
+
+.housekeeping-room-input:focus {
+  outline: none;
+  border-color: #B4A599;
+  box-shadow: 0 0 0 2px rgba(202, 165, 147, 0.2);
+}
+
+.housekeeping-notes-section {
+  margin-bottom: 24px;
+}
+
+.housekeeping-notes-label {
+  font-family: 'Avenir Next', 'Avenir', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5em;
+  color: #302F27;
+  text-align: left;
+  margin: 0 0 12px;
+}
+
+.housekeeping-textarea {
+  width: 100%;
+  padding: 16px;
+  background: #CAA593;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Avenir Next', 'Avenir', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5em;
+  color: #302F27;
+  resize: vertical;
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+.housekeeping-textarea::placeholder {
+  color: rgba(48, 47, 39, 0.5);
+}
+
+.housekeeping-textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(202, 165, 147, 0.3);
+}
+
+.housekeeping-actions {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 375px;
+  display: flex;
+  gap: 12px;
+  padding: 16px 20px;
+  background: #ffffff;
+  z-index: 10;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.housekeeping-clear-button {
+  flex: 1;
+  padding: 16px 24px;
+  background: #999999;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.housekeeping-clear-button:hover {
+  background: #888888;
+  transform: translateY(-1px);
+}
+
+.housekeeping-clear-button:active {
+  transform: translateY(0);
+  background: #777777;
+}
+
+.housekeeping-submit-button {
+  flex: 1;
+  padding: 16px 24px;
+  background: #CAA593;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.housekeeping-submit-button:hover:not(:disabled) {
+  background: #C4B5A9;
+  transform: translateY(-1px);
+}
+
+.housekeeping-submit-button:active:not(:disabled) {
+  transform: translateY(0);
+  background: #B4A599;
+}
+
+.housekeeping-submit-button:disabled {
+  background: #E0E0E0;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+@media (max-width: 375px) {
+  .housekeeping-content {
+    padding: 20px 15px 180px;
+  }
+
+  .housekeeping-services-grid {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .housekeeping-service-button {
+    padding: 14px 10px;
+    min-height: 90px;
+  }
+
+  .housekeeping-service-icon {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 6px;
+  }
+
+  .housekeeping-service-label {
+    font-size: 11px;
+  }
+
+  .housekeeping-actions {
+    padding: 14px 15px;
+    gap: 10px;
+  }
+
+  .housekeeping-clear-button,
+  .housekeeping-submit-button {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+}
+
+/* Center the page on larger screens */
+@media (min-width: 376px) {
+  .housekeeping-page {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+  }
+  
+  .housekeeping-background {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+  
+  .housekeeping-overlay {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+
+  .housekeeping-actions {
+    left: calc(50% - 187.5px);
+    transform: none;
+    bottom: 60px;
+  }
+}

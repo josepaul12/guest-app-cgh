@@ -21,7 +21,7 @@ import Activities from './pages/activities.tsx';
 import GuestServices from './pages/guest-services.tsx';
 import Facilities from './pages/facilities.tsx';
 import Message from './pages/message.tsx';
-import HousekeepingPage from './components/HousekeepingPage';
+import Housekeeping from './pages/housekeeping.tsx';
 import BottomNavigation from './components/BottomNavigation';
 import './App.css';
 
@@ -160,6 +160,11 @@ function App() {
     setActiveTab('');
   };
 
+  const handleHousekeepingClick = () => {
+    setCurrentPage('housekeeping');
+    setActiveTab('');
+  };
+
   // Determine activeTab based on currentPage
   const getActiveTab = () => {
     if (currentPage === 'home') {
@@ -216,11 +221,11 @@ function App() {
       case 'message':
         return <Message onBack={handleBackToHome} />;
       case 'housekeeping':
-        return <HousekeepingPage onBack={handleBackToHome} />;
+        return <Housekeeping onBack={handleBackToHome} />;
       case 'highlights':
         return <div className="highlights-page">Highlights page coming soon...</div>;
       default:
-        return <Home onWelcomeClick={handleWelcomeClick} onGalleryClick={handleGalleryClick} onMenuClick={handleMenuClick} onOffersClick={handleOffersClick} onExperienceClick={handleExperienceClick} onFoodAndDrinksClick={handleFoodAndDrinksClick} onAboutClick={handleAboutClick} onOtherDestinationsClick={handleOtherDestinationsClick} onAyurvedaClick={handleAyurvedaClick} onRoomsClick={handleRoomsClick} onWellnessClick={handleWellnessClick} onGuestServicesClick={handleGuestServicesClick} onFacilitiesClick={handleFacilitiesClick} />;
+        return <Home onWelcomeClick={handleWelcomeClick} onGalleryClick={handleGalleryClick} onMenuClick={handleMenuClick} onOffersClick={handleOffersClick} onExperienceClick={handleExperienceClick} onFoodAndDrinksClick={handleFoodAndDrinksClick} onAboutClick={handleAboutClick} onOtherDestinationsClick={handleOtherDestinationsClick} onAyurvedaClick={handleAyurvedaClick} onRoomsClick={handleRoomsClick} onWellnessClick={handleWellnessClick} onGuestServicesClick={handleGuestServicesClick} onFacilitiesClick={handleFacilitiesClick} onHousekeepingClick={handleHousekeepingClick} />;
     }
   };
 
