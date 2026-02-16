@@ -1,33 +1,31 @@
 .other-destinations-page {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   max-width: 100%;
   margin: 0 auto;
   background: #F5F1ED;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 .other-destinations-background {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100%;
   background: #F5F1ED;
   z-index: 1;
 }
 
 .other-destinations-overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100%;
   background: transparent;
   z-index: 2;
 }
@@ -82,14 +80,14 @@
   position: relative;
   z-index: 3;
   flex: 1;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   padding: 0 0 100px;
   max-width: 375px;
   margin: 0 auto;
   width: 100%;
   background: #F5F1ED;
-  overflow-y: auto;
+  min-height: 0;
 }
 
 .other-destinations-heading {
@@ -118,7 +116,7 @@
 .other-destinations-cards-container {
   padding: 0 0 20px;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: visible;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -202,6 +200,10 @@
   cursor: pointer;
   transition: all 0.2s ease;
   border: none;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .other-destinations-card-button-know-more {
@@ -266,22 +268,18 @@
 /* Center the page on larger screens */
 @media (min-width: 376px) {
   .other-destinations-page {
-    left: 50%;
-    transform: translateX(-50%);
     max-width: 375px;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .other-destinations-background {
-    left: 50%;
-    transform: translateX(-50%);
     max-width: 375px;
-    width: 375px;
+    width: 100%;
   }
   
   .other-destinations-overlay {
-    left: 50%;
-    transform: translateX(-50%);
     max-width: 375px;
-    width: 375px;
+    width: 100%;
   }
 }

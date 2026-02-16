@@ -41,7 +41,16 @@
   width: 24px;
   height: 24px;
   stroke: #FFFFFF;
-  fill: currentColor;
+  fill: none;
+}
+
+.nav-tab:first-child .nav-icon {
+  fill: none;
+}
+
+.nav-icon-message {
+  width: 20px;
+  height: 20px;
 }
 
 .nav-label {
@@ -63,8 +72,44 @@
   fill: #302F27;
 }
 
-/* Responsive deswidthign */
-@media (max-: 375px) {
+/* Keep home icon stroke-only */
+.nav-tab:first-child .nav-icon,
+.nav-tab:first-child.active .nav-icon {
+  fill: none;
+}
+
+.nav-tab:first-child .nav-icon path {
+  fill: none;
+}
+
+/* When Message is active, make other items white */
+.bottom-navigation.message-active .nav-tab:not(.active) {
+  color: #FFFFFF;
+}
+
+.bottom-navigation.message-active .nav-tab:not(.active) .nav-icon {
+  stroke: #FFFFFF;
+  fill: #FFFFFF;
+}
+
+.bottom-navigation.message-active .nav-tab:first-child:not(.active) .nav-icon {
+  fill: none;
+}
+
+.bottom-navigation.message-active .nav-tab:first-child:not(.active) .nav-icon path {
+  fill: none;
+}
+
+.bottom-navigation.message-active .nav-tab:not(.active) svg path[stroke] {
+  stroke: #FFFFFF;
+}
+
+.bottom-navigation.message-active .nav-tab:not(.active) svg path[fill] {
+  fill: #FFFFFF;
+}
+
+/* Responsive design */
+@media (max-width: 375px) {
   .bottom-navigation {
     width: 100%;
   }
