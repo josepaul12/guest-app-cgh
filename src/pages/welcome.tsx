@@ -1,18 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './welcome.css';
 
-type WelcomeProps = {
-  onBack?: () => void;
-  onOurCollectionClick?: () => void;
-};
-
-const Welcome: React.FC<WelcomeProps> = ({ onBack, onOurCollectionClick }) => {
+const Welcome: React.FC = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="welcome-page">
       <div className="welcome-background" />
       <div className="welcome-overlay" />
       <div className="welcome-topbar">
-        <button className="welcome-back-button" onClick={onBack} aria-label="Back">
+        <button className="welcome-back-button" onClick={() => navigate(-1)} aria-label="Back">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
@@ -38,7 +36,7 @@ const Welcome: React.FC<WelcomeProps> = ({ onBack, onOurCollectionClick }) => {
           <button className="welcome-button">
             <span>Brand</span>
           </button>
-          <button className="welcome-button" onClick={onOurCollectionClick}>
+          <button className="welcome-button" onClick={() => navigate('/other-destinations')}>
             <span>Our collection</span>
           </button>
           <button className="welcome-button">

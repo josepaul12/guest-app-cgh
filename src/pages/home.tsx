@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
+import { useAppNavigation } from '../hooks/useAppNavigation.ts';
 import './home.css';
 import welcomeImage from '../assets/images/imagesmarari/welcome.png';
 import galleryImage from '../assets/images/imagesmarari/gallery.png';
@@ -43,26 +45,68 @@ const Card: React.FC<CardProps> = ({ title, image, size = 'medium', align = 'lef
   );
 };
 
-type HomeProps = {
-  onWelcomeClick?: () => void;
-  onGalleryClick?: () => void;
-  onMenuClick?: () => void;
-  onOffersClick?: () => void;
-  onExperienceClick?: () => void;
-  onFoodAndDrinksClick?: () => void;
-  onAboutClick?: () => void;
-  onOtherDestinationsClick?: () => void;
-  onAyurvedaClick?: () => void;
-  onRoomsClick?: () => void;
-  onWellnessClick?: () => void;
-  onGuestServicesClick?: () => void;
-  onFacilitiesClick?: () => void;
-  onHousekeepingClick?: () => void;
-};
-
-const Home: React.FC<HomeProps> = ({ onWelcomeClick, onGalleryClick, onMenuClick, onOffersClick, onExperienceClick, onFoodAndDrinksClick, onAboutClick, onOtherDestinationsClick, onAyurvedaClick, onRoomsClick, onWellnessClick, onGuestServicesClick, onFacilitiesClick, onHousekeepingClick }) => {
+const Home: React.FC = () => {
+  const { navigate } = useAppNavigation();
+  const { timelineId, reservationId, crmId } = useParams();
   const [showScrollArrow, setShowScrollArrow] = useState(true);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Store IDs in localStorage when received from params
+    if (timelineId && reservationId) {
+      localStorage.setItem('timelineId', timelineId);
+      localStorage.setItem('reservationId', reservationId);
+      if (crmId) {
+        localStorage.setItem('crmId', crmId);
+      }
+    }
+
+    // Fetch reservation info from API using route params
+    const fetchReservationInfo = async (timelineId: string, reservationId: string, crmId: string) => {
+      try {
+        const url = `https://demo.pms.instio.co/api/pms/v2/reservation/${timelineId}/${reservationId}/info`;
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Reservation info:', data);
+        
+        // Extract first name from response data
+        const firstName = data?.data?.firstName || data?.firstName || data?.guest?.firstName || data?.guestInfo?.firstName || '';
+        
+        // Store first name in localStorage
+        if (firstName) {
+          localStorage.setItem('userFirstName', firstName);
+        }
+        
+        // Store companyCRMId (crm-id from URL) in localStorage
+        if (crmId) {
+          localStorage.setItem('companyCRMId', crmId);
+        }
+        
+        // Extract and store siteId from API response
+        const siteId = data?.data?.siteId || data?.siteId || data?.reservation?.siteId || '';
+        if (siteId) {
+          localStorage.setItem('siteId', siteId);
+        }
+      } catch (err) {
+        console.error('Error fetching reservation info:', err);
+      }
+    };
+
+    // Use route params to make API call
+    if (timelineId && reservationId) {
+      fetchReservationInfo(timelineId, reservationId, crmId || '');
+    }
+  }, [timelineId, reservationId, crmId]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,7 +139,7 @@ const Home: React.FC<HomeProps> = ({ onWelcomeClick, onGalleryClick, onMenuClick
   return (
     <div className="home-page">
       <header className="home-topbar">
-        <button className="icon-button" aria-label="Menu" onClick={onMenuClick}>
+        <button className="icon-button" aria-label="Menu" onClick={() => navigate('/menu')}>
           <span className="icon icon-menu" />
         </button>
         <span className="brand-mark" aria-hidden="true">
@@ -104,7 +148,7 @@ const Home: React.FC<HomeProps> = ({ onWelcomeClick, onGalleryClick, onMenuClick
             <path d="M23.1582 24.8836C22.4511 23.476 21.6041 22.1665 20.6339 20.9811C19.7126 19.8699 18.8686 18.6783 18.1096 17.4171C17.9609 17.2472 17.9609 17.2472 17.9609 16.9086C17.8122 16.7387 17.8122 16.7387 17.6636 16.7387C16.7726 16.0604 15.2879 16.9086 15.7329 18.2653L15.8816 18.4352C16.5324 19.4775 16.8946 20.7191 16.9212 21.9992C17.0699 23.6956 17.0699 25.5632 17.0699 27.2596C17.099 28.0727 16.8981 28.8748 16.497 29.5471C16.0959 30.2194 15.5159 30.7262 14.8429 30.9923C14.1594 31.1789 13.5394 31.5922 13.0609 32.1803C12.2723 33.4663 11.9043 35.028 12.0213 36.5926C12.1699 37.4408 12.6149 37.6107 13.6546 37.4408C14.9428 37.1107 16.1897 36.5974 17.3662 35.913C17.5149 35.7431 17.6636 35.7431 17.8112 35.5733C18.8509 34.8949 20.0382 34.0467 21.2265 33.3671C22.498 32.5532 23.453 31.2197 23.8995 29.6344C24.1647 28 23.9009 26.3111 23.1572 24.8824" fill="#BDBDBD"/>
           </svg>
         </span>
-        <button className="icon-button" aria-label="Call">
+        <button className="icon-button" aria-label="Call" onClick={() => window.location.href = 'tel:+918071700830'}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M3 5C3 3.89543 3.89543 3 5 3H8.27924C8.70967 3 9.09181 3.27543 9.22792 3.68377L10.7257 8.17721C10.8831 8.64932 10.6694 9.16531 10.2243 9.38787L7.96701 10.5165C9.06925 12.9612 11.0388 14.9308 13.4835 16.033L14.6121 13.7757C14.8347 13.3306 15.3507 13.1169 15.8228 13.2743L20.3162 14.7721C20.7246 14.9082 21 15.2903 21 15.7208V19C21 20.1046 20.1046 21 19 21H18C9.71573 21 3 14.2843 3 6V5Z"/>
           </svg>
@@ -113,8 +157,8 @@ const Home: React.FC<HomeProps> = ({ onWelcomeClick, onGalleryClick, onMenuClick
 
       <main className="home-content" ref={contentRef}>
         <div className="grid two-cols">
-          <Card title="Welcome" image={welcomeImage} size="medium" onClick={onWelcomeClick} />
-          <Card title="Gallery" image={galleryImage} size="medium" onClick={onGalleryClick} />
+          <Card title="Welcome" image={welcomeImage} size="medium" onClick={() => navigate('/welcome')} />
+          <Card title="Gallery" image={galleryImage} size="medium" onClick={() => navigate('/gallery')} />
         </div>
 
         <Card
@@ -125,18 +169,18 @@ const Home: React.FC<HomeProps> = ({ onWelcomeClick, onGalleryClick, onMenuClick
           hasOverlay={true}
           noLabelBackground={true}
           labelClassName="font-caslon"
-          onClick={onOffersClick}
+          onClick={() => navigate('/offers')}
         />
 
         <div className="grid two-cols">
-          <Card title="Experiences" image={experiencesImage} onClick={onExperienceClick} />
-          <Card title="Food & drinks" image={foodDrinksImage} onClick={onFoodAndDrinksClick} />
+          <Card title="Experiences" image={experiencesImage} onClick={() => navigate('/experience')} />
+          <Card title="Food & drinks" image={foodDrinksImage} onClick={() => navigate('/food-and-drinks')} />
         </div>
 
-        <div className="grid three-cols">
-          <Card title="About" image={aboutImage} size="small" onClick={onAboutClick} />
-          <Card title="Guest Services" image={guestServicesImage} size="small" onClick={onGuestServicesClick} />
-          <Card title="Facilities" image={facilitiesImage} size="small" onClick={onFacilitiesClick} />
+        <div className="grid three-cols three-cols-fixed">
+          <Card title="About" image={aboutImage} size="small" onClick={() => navigate('/about')} />
+          <Card title="Guest Services" image={guestServicesImage} size="small" onClick={() => navigate('/guest-services')} />
+          <Card title="Facilities" image={facilitiesImage} size="small" onClick={() => navigate('/facilities')} />
         </div>
 
         <Card 
@@ -147,12 +191,12 @@ const Home: React.FC<HomeProps> = ({ onWelcomeClick, onGalleryClick, onMenuClick
           hasOverlay={true}
           noLabelBackground={true}
           labelClassName="font-caslon"
-          onClick={onAyurvedaClick}
+          onClick={() => navigate('/ayurveda')}
         />
 
         <div className="grid two-cols">
-          <Card title="Rooms" image={roomsImage} onClick={onRoomsClick} />
-          <Card title="Housekeeping" image={housekeepingImage} onClick={onHousekeepingClick} />
+          <Card title="Rooms" image={roomsImage} onClick={() => navigate('/rooms')} />
+          <Card title="Housekeeping" image={housekeepingImage} onClick={() => navigate('/housekeeping')} />
         </div>
 
         <Card 
@@ -166,8 +210,8 @@ const Home: React.FC<HomeProps> = ({ onWelcomeClick, onGalleryClick, onMenuClick
         />
 
         <div className="grid two-cols">
-          <Card title="Other Destination" image={otherDestinationImage} onClick={onOtherDestinationsClick} />
-          <Card title="Wellness & Healthcare" image={wellnessHealthcareImage} onClick={onWellnessClick} />
+          <Card title="Other Destination" image={otherDestinationImage} onClick={() => navigate('/other-destinations')} />
+          <Card title="Wellness & Healthcare" image={wellnessHealthcareImage} onClick={() => navigate('/wellness')} />
         </div>
 
        

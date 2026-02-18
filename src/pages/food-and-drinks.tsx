@@ -87,25 +87,48 @@ const FoodAndDrinks: React.FC = () => {
       </div>
 
       <div className="food-and-drinks-content">
-        {diningOptions.map((option) => (
-          <div 
-            key={option.id} 
-            className="food-and-drinks-card"
-            onClick={option.id === 2 ? () => navigate('/chakara') : undefined}
-            style={{ cursor: option.id === 2 ? 'pointer' : 'default' }}
-          >
+        {diningOptions.map((option, index) => {
+          const getRoute = () => {
+            switch (option.id) {
+              case 1: return '/todays-recommendation';
+              case 2: return '/chakara';
+              case 3: return '/beach-shack';
+              case 4: return '/farm-kitchen';
+              case 5: return '/beach-grill';
+              case 6: return '/tea-card';
+              case 7: return '/beach-house-bar';
+              case 8: return '/pool-villa-dining';
+              case 9: return '/exclusive-dining';
+              default: return undefined;
+            }
+          };
+          
+          const route = getRoute();
+          const isLeftAligned = index % 2 === 0; // Even indices (0, 2, 4...) are left-aligned
+          const textContainerClass = isLeftAligned 
+            ? 'food-and-drinks-card-top-left' 
+            : 'food-and-drinks-card-top-right';
+          
+          return (
             <div 
-              className="food-and-drinks-card-background"
-              style={{ backgroundImage: `url(${option.image})` }}
+              key={option.id} 
+              className="food-and-drinks-card"
+              onClick={route ? () => navigate(route) : undefined}
+              style={{ cursor: route ? 'pointer' : 'default' }}
             >
-              <div className="food-and-drinks-card-overlay"></div>
-              <div className="food-and-drinks-card-top-right">
-                <h2 className="food-and-drinks-card-name">{option.name}</h2>
-                <span className="food-and-drinks-card-price">{option.price}</span>
+              <div 
+                className="food-and-drinks-card-background"
+                style={{ backgroundImage: `url(${option.image})` }}
+              >
+                <div className="food-and-drinks-card-overlay"></div>
+                <div className={textContainerClass}>
+                  <h2 className="food-and-drinks-card-name">{option.name}</h2>
+                  <span className="food-and-drinks-card-price">{option.price}</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
+import PageLayout from './components/PageLayout';
+import RouteHandler from './components/RouteHandler.tsx';
 import Home from './pages/home.tsx';
 import Welcome from './pages/welcome.tsx';
 import Gallery from './pages/gallery.tsx';
@@ -12,6 +15,14 @@ import CuratedExperiences from './pages/curated-experiences.tsx';
 import FishingVillageTour from './pages/fishing-village-tour.tsx';
 import FoodAndDrinks from './pages/food-and-drinks.tsx';
 import Chakara from './pages/chakara.tsx';
+import TodaysRecommendation from './pages/todays-recommendation.tsx';
+import BeachShack from './pages/beach-shack.tsx';
+import FarmKitchen from './pages/farm-kitchen.tsx';
+import BeachGrill from './pages/beach-grill.tsx';
+import TeaCard from './pages/tea-card.tsx';
+import BeachHouseBar from './pages/beach-house-bar.tsx';
+import PoolVillaDining from './pages/pool-villa-dining.tsx';
+import ExclusiveDining from './pages/exclusive-dining.tsx';
 import About from './pages/about.tsx';
 import OtherDestinations from './pages/other-destinations.tsx';
 import Ayurveda from './pages/ayurveda.tsx';
@@ -22,220 +33,70 @@ import GuestServices from './pages/guest-services.tsx';
 import Facilities from './pages/facilities.tsx';
 import Message from './pages/message.tsx';
 import Housekeeping from './pages/housekeeping.tsx';
-import BottomNavigation from './components/BottomNavigation';
 import './App.css';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('landing');
-  const [activeTab, setActiveTab] = useState('home');
-
-  const handleDiscoverMore = () => {
-    setCurrentPage('home');
-    setActiveTab('home');
-  };
-
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-    if (tab === 'home') {
-      setCurrentPage('home');
-    } else if (tab === 'message') {
-      setCurrentPage('message');
-    } else if (tab === 'highlights') {
-      setCurrentPage('highlights');
-    }
-  };
-
-  const handleBackToHome = () => {
-    setCurrentPage('home');
-    setActiveTab('home');
-  };
-
-  const handleWelcomeClick = () => {
-    setCurrentPage('welcome');
-    setActiveTab('');
-  };
-
-  const handleGalleryClick = () => {
-    setCurrentPage('gallery');
-    setActiveTab('');
-  };
-
-  const handleMenuClick = () => {
-    setCurrentPage('menu');
-    setActiveTab('home');
-  };
-
-  const handleWeatherClick = () => {
-    setCurrentPage('weather');
-    setActiveTab('');
-  };
-
-  const handleNearbyClick = () => {
-    setCurrentPage('nearby');
-    setActiveTab('');
-  };
-
-  const handleOffersClick = () => {
-    setCurrentPage('offers');
-    setActiveTab('');
-  };
-
-  const handleExperienceClick = () => {
-    setCurrentPage('experience');
-    setActiveTab('');
-  };
-
-  const handleCuratedExperiencesClick = () => {
-    setCurrentPage('curated-experiences');
-    setActiveTab('');
-  };
-
-  const handleBackToExperience = () => {
-    setCurrentPage('experience');
-    setActiveTab('');
-  };
-
-  const handleFishingVillageTourClick = () => {
-    setCurrentPage('fishing-village-tour');
-    setActiveTab('');
-  };
-
-  const handleBackToCuratedExperiences = () => {
-    setCurrentPage('curated-experiences');
-    setActiveTab('');
-  };
-
-  const handleFoodAndDrinksClick = () => {
-    setCurrentPage('food-and-drinks');
-    setActiveTab('');
-  };
-
-  const handleChakaraClick = () => {
-    setCurrentPage('chakara');
-    setActiveTab('');
-  };
-
-  const handleBackToFoodAndDrinks = () => {
-    setCurrentPage('food-and-drinks');
-    setActiveTab('');
-  };
-
-  const handleAboutClick = () => {
-    setCurrentPage('about');
-    setActiveTab('');
-  };
-
-  const handleOtherDestinationsClick = () => {
-    setCurrentPage('other-destinations');
-    setActiveTab('');
-  };
-
-  const handleAyurvedaClick = () => {
-    setCurrentPage('ayurveda');
-    setActiveTab('');
-  };
-
-  const handleRoomsClick = () => {
-    setCurrentPage('rooms');
-    setActiveTab('');
-  };
-
-  const handleWellnessClick = () => {
-    setCurrentPage('wellness');
-    setActiveTab('');
-  };
-
-  const handleActivitiesClick = () => {
-    setCurrentPage('activities');
-    setActiveTab('');
-  };
-
-  const handleGuestServicesClick = () => {
-    setCurrentPage('guest-services');
-    setActiveTab('');
-  };
-
-  const handleFacilitiesClick = () => {
-    setCurrentPage('facilities');
-    setActiveTab('');
-  };
-
-  const handleHousekeepingClick = () => {
-    setCurrentPage('housekeeping');
-    setActiveTab('');
-  };
-
-  // Determine activeTab based on currentPage
-  const getActiveTab = () => {
-    if (currentPage === 'home') {
-      return 'home';
-    }
-    if (currentPage === 'message') {
-      return 'message';
-    }
-    return '';
-  };
-
-  const renderCurrentPage = () => {
-    switch (currentPage) {
-      case 'landing':
-        return <LandingPage onDiscoverMore={handleDiscoverMore} />;
-      case 'welcome':
-        return <Welcome onBack={handleBackToHome} onOurCollectionClick={handleOtherDestinationsClick} />;
-      case 'gallery':
-        return <Gallery onBack={handleBackToHome} />;
-      case 'menu':
-        return <Menu onBack={handleBackToHome} onWeatherClick={handleWeatherClick} onNearbyClick={handleNearbyClick} />;
-      case 'weather':
-        return <Weather onBack={handleBackToHome} />;
-      case 'nearby':
-        return <Nearby onBack={handleBackToHome} />;
-      case 'offers':
-        return <Offers onBack={handleBackToHome} />;
-      case 'experience':
-        return <Experience onBack={handleBackToHome} onCuratedExperiencesClick={handleCuratedExperiencesClick} onActivitiesClick={handleActivitiesClick} />;
-      case 'activities':
-        return <Activities onBack={handleBackToExperience} />;
-      case 'curated-experiences':
-        return <CuratedExperiences onBack={handleBackToExperience} onFishingVillageTourClick={handleFishingVillageTourClick} />;
-      case 'fishing-village-tour':
-        return <FishingVillageTour onBack={handleBackToCuratedExperiences} />;
-      case 'food-and-drinks':
-        return <FoodAndDrinks onBack={handleBackToHome} onChakaraClick={handleChakaraClick} />;
-      case 'chakara':
-        return <Chakara onBack={handleBackToFoodAndDrinks} />;
-      case 'about':
-        return <About onBack={handleBackToHome} />;
-      case 'other-destinations':
-        return <OtherDestinations onBack={handleBackToHome} />;
-      case 'ayurveda':
-        return <Ayurveda onBack={handleBackToHome} />;
-      case 'rooms':
-        return <Rooms onBack={handleBackToHome} />;
-      case 'wellness':
-        return <Wellness onBack={handleBackToHome} />;
-      case 'guest-services':
-        return <GuestServices onBack={handleBackToHome} />;
-      case 'facilities':
-        return <Facilities onBack={handleBackToHome} />;
-      case 'message':
-        return <Message onBack={handleBackToHome} />;
-      case 'housekeeping':
-        return <Housekeeping onBack={handleBackToHome} />;
-      case 'highlights':
-        return <div className="highlights-page">Highlights page coming soon...</div>;
-      default:
-        return <Home onWelcomeClick={handleWelcomeClick} onGalleryClick={handleGalleryClick} onMenuClick={handleMenuClick} onOffersClick={handleOffersClick} onExperienceClick={handleExperienceClick} onFoodAndDrinksClick={handleFoodAndDrinksClick} onAboutClick={handleAboutClick} onOtherDestinationsClick={handleOtherDestinationsClick} onAyurvedaClick={handleAyurvedaClick} onRoomsClick={handleRoomsClick} onWellnessClick={handleWellnessClick} onGuestServicesClick={handleGuestServicesClick} onFacilitiesClick={handleFacilitiesClick} onHousekeepingClick={handleHousekeepingClick} />;
-    }
-  };
-
   return (
-    <div className="App">
-      {renderCurrentPage()}
-      {currentPage !== 'landing' && currentPage !== 'menu' && (
-        <BottomNavigation activeTab={getActiveTab()} onTabChange={handleTabChange} />
-      )}
-    </div>
+    <HashRouter>
+      <RouteHandler>
+        <div className="App">
+          <Routes>
+            {/* Landing page */}
+            <Route path="/" element={<LandingPage />} />
+            
+            {/* Main route pattern: #/home/timelineId/reservationId/crmId -> Home */}
+            {/* Also handles: #//timelineId/reservationId/crmId via RouteHandler */}
+            <Route path="/home/:timelineId/:reservationId/:crmId?" element={<PageLayout><Home /></PageLayout>} />
+            <Route path="/home" element={<PageLayout><Home /></PageLayout>} />
+          
+          {/* Other pages - these will preserve IDs via navigation hook */}
+          <Route path="/welcome" element={<PageLayout><Welcome /></PageLayout>} />
+          <Route path="/gallery" element={<PageLayout><Gallery /></PageLayout>} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/weather" element={<PageLayout><Weather /></PageLayout>} />
+          <Route path="/nearby" element={<PageLayout><Nearby /></PageLayout>} />
+          <Route path="/offers" element={<PageLayout><Offers /></PageLayout>} />
+          
+          {/* Experience pages */}
+          <Route path="/experience" element={<PageLayout><Experience /></PageLayout>} />
+          <Route path="/activities" element={<PageLayout><Activities /></PageLayout>} />
+          <Route path="/curated-experiences" element={<PageLayout><CuratedExperiences /></PageLayout>} />
+          <Route path="/fishing-village-tour" element={<PageLayout><FishingVillageTour /></PageLayout>} />
+          
+          {/* Food & Drinks */}
+          <Route path="/food-and-drinks" element={<PageLayout><FoodAndDrinks /></PageLayout>} />
+          <Route path="/chakara" element={<PageLayout><Chakara /></PageLayout>} />
+          <Route path="/todays-recommendation" element={<PageLayout><TodaysRecommendation /></PageLayout>} />
+          <Route path="/beach-shack" element={<PageLayout><BeachShack /></PageLayout>} />
+          <Route path="/farm-kitchen" element={<PageLayout><FarmKitchen /></PageLayout>} />
+          <Route path="/beach-grill" element={<PageLayout><BeachGrill /></PageLayout>} />
+          <Route path="/tea-card" element={<PageLayout><TeaCard /></PageLayout>} />
+          <Route path="/beach-house-bar" element={<PageLayout><BeachHouseBar /></PageLayout>} />
+          <Route path="/pool-villa-dining" element={<PageLayout><PoolVillaDining /></PageLayout>} />
+          <Route path="/exclusive-dining" element={<PageLayout><ExclusiveDining /></PageLayout>} />
+          
+          {/* Other pages */}
+          <Route path="/about" element={<PageLayout><About /></PageLayout>} />
+          <Route path="/other-destinations" element={<PageLayout><OtherDestinations /></PageLayout>} />
+          <Route path="/ayurveda" element={<PageLayout><Ayurveda /></PageLayout>} />
+          <Route path="/rooms" element={<PageLayout><Rooms /></PageLayout>} />
+          <Route path="/wellness" element={<PageLayout><Wellness /></PageLayout>} />
+          <Route path="/guest-services" element={<PageLayout><GuestServices /></PageLayout>} />
+          <Route path="/facilities" element={<PageLayout><Facilities /></PageLayout>} />
+          <Route path="/housekeeping" element={<PageLayout><Housekeeping /></PageLayout>} />
+          
+          {/* Message page */}
+          <Route path="/message" element={<PageLayout><Message /></PageLayout>} />
+          
+          {/* Highlights page */}
+          <Route path="/highlights" element={<PageLayout><div className="highlights-page">Highlights page coming soon...</div></PageLayout>} />
+          
+            {/* Default redirect */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
+      </RouteHandler>
+    </HashRouter>
   );
 }
 

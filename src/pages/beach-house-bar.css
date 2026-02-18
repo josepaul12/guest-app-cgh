@@ -1,0 +1,221 @@
+.beach-house-bar-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.beach-house-bar-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 1;
+}
+
+.beach-house-bar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 2;
+}
+
+.beach-house-bar-topbar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 10px;
+  min-height: 56px;
+  flex-shrink: 0;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.beach-house-bar-back-button {
+  background: none;
+  border: none;
+  color: #302F27;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beach-house-bar-title {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.067em;
+  letter-spacing: 0.04em;
+  color: #302F27;
+  text-align: center;
+  margin: 0;
+}
+
+.beach-house-bar-call-button {
+  background: none;
+  border: none;
+  color: #302F27;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beach-house-bar-content {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 100px;
+  max-width: 375px;
+  margin: 0 auto;
+  width: 100%;
+  background: #ffffff;
+  overflow-y: auto;
+}
+
+.beach-house-bar-hero-image-container {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.beach-house-bar-hero-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.beach-house-bar-description-section {
+  padding: 24px 20px;
+  background: #ffffff;
+}
+
+.beach-house-bar-description {
+  font-family: 'Avenir Next', 'Avenir', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6em;
+  color: #302F27;
+  text-align: left;
+  margin: 0;
+}
+
+.beach-house-bar-timings-section {
+  padding: 0 20px 24px;
+  background: #ffffff;
+}
+
+.beach-house-bar-section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.beach-house-bar-section-icon {
+  flex-shrink: 0;
+  color: #D4C5B9;
+}
+
+.beach-house-bar-section-title {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3em;
+  letter-spacing: 0.02em;
+  color: #302F27;
+  text-align: left;
+  margin: 0;
+}
+
+.beach-house-bar-timings-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 28px;
+}
+
+.beach-house-bar-timing-item {
+  font-family: 'Avenir Next', 'Avenir', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6em;
+  color: #302F27;
+  text-align: left;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.beach-house-bar-timing-item::before {
+  content: '•';
+  position: absolute;
+  left: -16px;
+  color: #302F27;
+  font-size: 16px;
+}
+
+.beach-house-bar-timing-item:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 375px) {
+  .beach-house-bar-content {
+    padding: 0 0 100px;
+  }
+
+  .beach-house-bar-description-section,
+  .beach-house-bar-timings-section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .beach-house-bar-description,
+  .beach-house-bar-timing-item {
+    font-size: 13px;
+  }
+
+  .beach-house-bar-section-title {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 376px) {
+  .beach-house-bar-page {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+  }
+  
+  .beach-house-bar-background {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+  
+  .beach-house-bar-overlay {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+}

@@ -1,13 +1,15 @@
 .other-destinations-page {
   position: relative;
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh; /* Use dynamic viewport height for mobile */
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
   background: #F5F1ED;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow: hidden; /* Prevent page-level scrolling, let content handle it */
 }
 
 .other-destinations-background {
@@ -31,7 +33,11 @@
 }
 
 .other-destinations-topbar {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
   z-index: 5;
   display: flex;
   align-items: center;
@@ -80,19 +86,25 @@
   position: relative;
   z-index: 3;
   flex: 1;
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
-  padding: 0 0 100px;
+  padding: 0;
   max-width: 375px;
   margin: 0 auto;
   width: 100%;
   background: #F5F1ED;
   min-height: 0;
+  overflow-y: auto;
+  margin-top: 56px; /* Space for fixed topbar */
+  padding-bottom: calc(60px + 80px); /* 60px nav + 80px spacing */
+  height: calc(100vh - 56px - 60px); /* Viewport height minus topbar and bottom nav */
+  height: calc(100dvh - 56px - 60px); /* Dynamic viewport height for mobile */
 }
 
 .other-destinations-heading {
   padding: 24px 20px 20px;
   background: #F5F1ED;
+  flex-shrink: 0; /* Prevent heading from shrinking */
 }
 
 .other-destinations-heading-line {
@@ -114,10 +126,11 @@
 }
 
 .other-destinations-cards-container {
-  padding: 0 0 20px;
+  padding: 0 0 40px;
   overflow-x: auto;
-  overflow-y: visible;
+  overflow-y: hidden; /* Prevent vertical scroll in cards container */
   -webkit-overflow-scrolling: touch;
+  flex-shrink: 0; /* Prevent container from shrinking */
 }
 
 .other-destinations-cards-container::-webkit-scrollbar {
@@ -227,7 +240,10 @@
 
 @media (max-width: 375px) {
   .other-destinations-content {
-    padding: 0 0 100px;
+    margin-top: 56px;
+    padding-bottom: calc(60px + 80px);
+    height: calc(100vh - 56px - 60px);
+    height: calc(100dvh - 56px - 60px);
   }
 
   .other-destinations-heading {
@@ -263,6 +279,10 @@
   .other-destinations-card-description {
     font-size: 12px;
   }
+
+  .other-destinations-cards-container {
+    padding: 0 0 40px;
+  }
 }
 
 /* Center the page on larger screens */
@@ -271,6 +291,13 @@
     max-width: 375px;
     margin-left: auto;
     margin-right: auto;
+  }
+  
+  .other-destinations-topbar {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
   }
   
   .other-destinations-background {

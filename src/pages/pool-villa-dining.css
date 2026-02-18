@@ -1,0 +1,221 @@
+.pool-villa-dining-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.pool-villa-dining-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 1;
+}
+
+.pool-villa-dining-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 2;
+}
+
+.pool-villa-dining-topbar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 10px;
+  min-height: 56px;
+  flex-shrink: 0;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.pool-villa-dining-back-button {
+  background: none;
+  border: none;
+  color: #302F27;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pool-villa-dining-title {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.067em;
+  letter-spacing: 0.04em;
+  color: #302F27;
+  text-align: center;
+  margin: 0;
+}
+
+.pool-villa-dining-call-button {
+  background: none;
+  border: none;
+  color: #302F27;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pool-villa-dining-content {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 100px;
+  max-width: 375px;
+  margin: 0 auto;
+  width: 100%;
+  background: #ffffff;
+  overflow-y: auto;
+}
+
+.pool-villa-dining-hero-image-container {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.pool-villa-dining-hero-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.pool-villa-dining-description-section {
+  padding: 24px 20px;
+  background: #ffffff;
+}
+
+.pool-villa-dining-description {
+  font-family: 'Avenir Next', 'Avenir', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6em;
+  color: #302F27;
+  text-align: left;
+  margin: 0;
+}
+
+.pool-villa-dining-timings-section {
+  padding: 0 20px 24px;
+  background: #ffffff;
+}
+
+.pool-villa-dining-section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.pool-villa-dining-section-icon {
+  flex-shrink: 0;
+  color: #D4C5B9;
+}
+
+.pool-villa-dining-section-title {
+  font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3em;
+  letter-spacing: 0.02em;
+  color: #302F27;
+  text-align: left;
+  margin: 0;
+}
+
+.pool-villa-dining-timings-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 28px;
+}
+
+.pool-villa-dining-timing-item {
+  font-family: 'Avenir Next', 'Avenir', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6em;
+  color: #302F27;
+  text-align: left;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.pool-villa-dining-timing-item::before {
+  content: '•';
+  position: absolute;
+  left: -16px;
+  color: #302F27;
+  font-size: 16px;
+}
+
+.pool-villa-dining-timing-item:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 375px) {
+  .pool-villa-dining-content {
+    padding: 0 0 100px;
+  }
+
+  .pool-villa-dining-description-section,
+  .pool-villa-dining-timings-section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .pool-villa-dining-description,
+  .pool-villa-dining-timing-item {
+    font-size: 13px;
+  }
+
+  .pool-villa-dining-section-title {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 376px) {
+  .pool-villa-dining-page {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+  }
+  
+  .pool-villa-dining-background {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+  
+  .pool-villa-dining-overlay {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+}
