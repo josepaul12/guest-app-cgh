@@ -76,7 +76,6 @@ const Offers: React.FC = () => {
                 alt={offer.title}
                 className="offers-offer-image"
               />
-              <div className="offers-offer-overlay"></div>
             </div>
             <div className="offers-offer-content">
               <button className="offers-know-more-button">Know More</button>

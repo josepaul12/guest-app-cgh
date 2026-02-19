@@ -2,8 +2,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%;
-  max-width: 100%;
+  width: 100vw;
   height: 60px;
   background: #CAA593;
   display: flex;
@@ -14,9 +13,9 @@
 
 @media (min-width: 376px) {
   .bottom-navigation {
-    left: 50%;
-    transform: translateX(-50%);
-    width: 375px;
+    left: 0;
+    transform: none;
+    width: 100vw;
   }
 }
 
@@ -125,9 +124,4 @@
   }
 }
 
-@media (min-width: 768px) {
-  .bottom-navigation {
-    max-width: 375px;
-  }
-}
 
