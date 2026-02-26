@@ -5,13 +5,44 @@ import './menu.css';
 const Menu: React.FC = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState<string>('Guest');
+  const [roomNumber, setRoomNumber] = useState<string>('');
 
   useEffect(() => {
-    // Get first name from localStorage
-    const firstName = localStorage.getItem('userFirstName');
-    if (firstName) {
-      setUserName(firstName);
+    let nameToShow = 'Guest';
+    let roomToShow = '';
+    const raw = sessionStorage.getItem('reservationInfo');
+    if (raw) {
+      try {
+        const data = JSON.parse(raw);
+        // Prefer guest name and room from rooms array (first room)
+        const rooms = data?.data?.rooms ?? data?.rooms ?? [];
+        const firstRoom = Array.isArray(rooms) && rooms.length > 0 ? rooms[0] : null;
+        const firstName =
+          firstRoom?.firstName ??
+          data?.data?.firstName ??
+          data?.firstName ??
+          data?.guest?.firstName ??
+          data?.guestInfo?.firstName ??
+          '';
+        const room =
+          firstRoom?.room ??
+          data?.data?.room ??
+          data?.room ??
+          data?.data?.reservation?.room ??
+          data?.reservation?.room ??
+          '';
+        if (firstName) nameToShow = firstName;
+        if (room) roomToShow = String(room);
+      } catch {
+        // ignore parse error
+      }
     }
+    if (nameToShow === 'Guest') {
+      const fromLocal = localStorage.getItem('userFirstName');
+      if (fromLocal) nameToShow = fromLocal;
+    }
+    setUserName(nameToShow);
+    setRoomNumber(roomToShow);
   }, []);
 
   return (
@@ -30,7 +61,7 @@ const Menu: React.FC = () => {
         <div className="menu-user-section">
           <div className="menu-user-avatar">
             <div className="menu-room-badge">
-              <div className="menu-room-number">18C</div>
+              <div className="menu-room-number">{roomNumber || '–'}</div>
             </div>
           </div>
           <h2 className="menu-user-name">{userName}</h2>

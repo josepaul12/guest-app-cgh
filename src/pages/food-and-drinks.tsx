@@ -1,15 +1,17 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useAppNavigation } from '../hooks/useAppNavigation.ts';
 import './food-and-drinks.css';
 import restaurant1Image from '../assets/images/imagesmarari/restaurant-1.png';
 import barLoungeImage from '../assets/images/imagesmarari/bar-lounge.png';
 import beachDiningImage from '../assets/images/imagesmarari/beach-dining.png';
 import roomServiceImage from '../assets/images/imagesmarari/room-service.png';
 import restaurant2Image from '../assets/images/imagesmarari/restaurant-2.png';
+import teaCartImage from '../assets/images/imagesmarari/chaicart.jpg';  
+
 import backgroundImage from '../assets/images/imagesmarari/food-drinks-bg.png';
 
 const FoodAndDrinks: React.FC = () => {
-  const navigate = useNavigate();
+  const { navigate, navigateRaw } = useAppNavigation();
   const diningOptions = [
     {
       id: 1,
@@ -43,8 +45,8 @@ const FoodAndDrinks: React.FC = () => {
     },
     {
       id: 6,
-      image: roomServiceImage,
-      name: 'Tea card',
+      image: teaCartImage,
+      name: 'Tea cart',
       price: '₹950/pax'
     },
     {
@@ -73,7 +75,7 @@ const FoodAndDrinks: React.FC = () => {
       <div className="food-and-drinks-overlay" />
       
       <div className="food-and-drinks-topbar">
-        <button className="food-and-drinks-back-button" onClick={() => navigate(-1)} aria-label="Back">
+        <button className="food-and-drinks-back-button" onClick={() => navigateRaw(-1)} aria-label="Back">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
@@ -95,7 +97,7 @@ const FoodAndDrinks: React.FC = () => {
               case 3: return '/beach-shack';
               case 4: return '/farm-kitchen';
               case 5: return '/beach-grill';
-              case 6: return '/tea-card';
+              case 6: return '/tea-cart';
               case 7: return '/beach-house-bar';
               case 8: return '/pool-villa-dining';
               case 9: return '/exclusive-dining';

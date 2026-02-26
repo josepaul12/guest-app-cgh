@@ -256,7 +256,7 @@
   right: 20px;
   width: 44px;
   height: 44px;
-  background: rgba(48, 47, 39, 0.8);
+  background: rgba(2, 2, 2, 0.24);
   backdrop-filter: blur(8px);
   border: none;
   border-radius: 50%;
@@ -271,7 +271,7 @@
 }
 
 .home-scroll-indicator:hover {
-  background: rgba(48, 47, 39, 0.95);
+  background: rgba(0, 0, 0, 0.082);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }

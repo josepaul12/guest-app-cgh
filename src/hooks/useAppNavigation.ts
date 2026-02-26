@@ -17,33 +17,38 @@ export const useAppNavigation = () => {
     let reservationId = params.reservationId;
     let crmId = params.crmId;
 
-    // If not in params, try to parse from hash
-    if (!timelineId || !reservationId) {
-      const hash = location.hash;
-      
-      // Primary pattern: #/home/timelineId/reservationId/crmId (like cm-guestapp)
-      const homeMatch = hash.match(/#\/home\/([^/]+)\/([^/]+)(?:\/([^/]+))?/);
-      if (homeMatch) {
-        timelineId = homeMatch[1];
-        reservationId = homeMatch[2];
-        crmId = homeMatch[3] || crmId;
-      } else {
-        // Legacy pattern: #//timelineId/reservationId/crmId
-        const legacyMatch = hash.match(/#\/\/([^/]+)\/([^/]+)(?:\/([^/]+))?/);
-        if (legacyMatch) {
-          timelineId = legacyMatch[1];
-          reservationId = legacyMatch[2];
-          crmId = legacyMatch[3] || crmId;
+      // If not in params, try to parse from hash (base URL: #/timelineId/reservationId/crmId or with page)
+      if (!timelineId || !reservationId) {
+        const hash = location.hash;
+        // Base pattern: #/timelineId/reservationId/crmId or #/timelineId/reservationId/crmId/page
+        const baseMatch = hash.match(/^#\/([^/]+)\/([^/]+)(?:\/([^/]+))?(?:\/|$)/);
+        if (baseMatch && baseMatch[1] !== 'home') {
+          timelineId = baseMatch[1];
+          reservationId = baseMatch[2];
+          crmId = baseMatch[3] || crmId;
+        } else {
+          // Legacy: #/home/timelineId/reservationId/crmId
+          const homeMatch = hash.match(/#\/home\/([^/]+)\/([^/]+)(?:\/([^/]+))?/);
+          if (homeMatch) {
+            timelineId = homeMatch[1];
+            reservationId = homeMatch[2];
+            crmId = homeMatch[3] || crmId;
+          } else {
+            const legacyMatch = hash.match(/#\/\/([^/]+)\/([^/]+)(?:\/([^/]+))?/);
+            if (legacyMatch) {
+              timelineId = legacyMatch[1];
+              reservationId = legacyMatch[2];
+              crmId = legacyMatch[3] || crmId;
+            }
+          }
         }
       }
-    }
 
-    // Also check localStorage as fallback
+    // Also check sessionStorage as fallback
     if (!timelineId || !reservationId) {
-      const storedTimelineId = localStorage.getItem('timelineId');
-      const storedReservationId = localStorage.getItem('reservationId');
-      const storedCrmId = localStorage.getItem('crmId');
-      
+      const storedTimelineId = sessionStorage.getItem('timelineId');
+      const storedReservationId = sessionStorage.getItem('reservationId');
+      const storedCrmId = sessionStorage.getItem('crmId');
       if (storedTimelineId && storedReservationId) {
         timelineId = storedTimelineId;
         reservationId = storedReservationId;
@@ -51,34 +56,37 @@ export const useAppNavigation = () => {
       }
     }
 
+    // Parse from current pathname when on a nested page (e.g. .../welcome) so navigation stays under base
+    if ((!timelineId || !reservationId) && location.pathname) {
+      const segments = location.pathname.split('/').filter(Boolean);
+      if (segments.length >= 2) {
+        timelineId = timelineId || segments[0];
+        reservationId = reservationId || segments[1];
+        crmId = crmId || (segments.length >= 3 ? segments[2] : undefined);
+      }
+    }
+
     return { timelineId, reservationId, crmId };
   };
 
   /**
-   * Navigate to a route while preserving URL parameters
-   * @param path - The route path (e.g., '/welcome', '/gallery')
+   * Navigate to a route. Always keeps base URL: /timelineId/reservationId/crmId
+   * @param path - The route path: '/' (landing), '/home', '/welcome', '/menu', etc.
    * @param options - Optional navigation options
    */
   const navigateWithIds = (path: string, options?: { replace?: boolean }) => {
     const { timelineId, reservationId, crmId } = getIds();
 
-    // Build the path with IDs
-    let targetPath = path;
-
-    // If we have IDs and the path is not the landing page, preserve them
-    if (timelineId && reservationId && path !== '/') {
-      // For home route, use the pattern: /home/timelineId/reservationId/crmId
-      // Or use double-slash pattern: //timelineId/reservationId/crmId
-      if (path === '/home' || path.startsWith('/home')) {
-        targetPath = `/home/${timelineId}/${reservationId}${crmId ? `/${crmId}` : ''}`;
-      } else {
-        // For other routes, navigate normally - IDs are preserved via localStorage
-        // and can be accessed by components
-        targetPath = path;
-      }
+    // Always use base URL for every page when we have IDs
+    if (timelineId && reservationId) {
+      const base = `/${timelineId}/${reservationId}${crmId ? `/${crmId}` : ''}`;
+      const pagePath = path === '/' || path === '' ? '' : path.startsWith('/') ? path : `/${path}`;
+      const targetPath = pagePath ? `${base}${pagePath}` : base;
+      navigate(targetPath, options);
+      return;
     }
 
-    navigate(targetPath, options);
+    navigate(path, options);
   };
 
   /**

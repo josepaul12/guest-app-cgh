@@ -1,3 +1,9 @@
+:root {
+  /* Reserve space so content is not hidden under fixed bottom nav (60px) or footer */
+  --bottom-nav-height: 60px;
+  --content-bottom-safe: calc(var(--bottom-nav-height) + 32px);
+}
+
 * {
   margin: 0;
   padding: 0;

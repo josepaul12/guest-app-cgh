@@ -45,56 +45,69 @@ const Card: React.FC<CardProps> = ({ title, image, size = 'medium', align = 'lef
   );
 };
 
+const API_BASE = 'https://demo.pms.instio.co/api/pms/v2';
+const JSON_HEADERS = { 'Content-Type': 'application/json' };
+
 const Home: React.FC = () => {
   const { navigate } = useAppNavigation();
-  const { timelineId, reservationId, crmId } = useParams();
+  const { timelineId: paramTimelineId, reservationId: paramReservationId, crmId: paramCrmId } = useParams();
   const [showScrollArrow, setShowScrollArrow] = useState(true);
   const contentRef = useRef<HTMLDivElement>(null);
 
+  // Resolve IDs from route params or sessionStorage (e.g. when coming from landing)
+  const timelineId = paramTimelineId || sessionStorage.getItem('timelineId');
+  const reservationId = paramReservationId || sessionStorage.getItem('reservationId');
+  const crmId = paramCrmId ?? sessionStorage.getItem('crmId');
+
   useEffect(() => {
-    // Store IDs in localStorage when received from params
     if (timelineId && reservationId) {
-      localStorage.setItem('timelineId', timelineId);
-      localStorage.setItem('reservationId', reservationId);
+      sessionStorage.setItem('timelineId', timelineId);
+      sessionStorage.setItem('reservationId', reservationId);
       if (crmId) {
-        localStorage.setItem('crmId', crmId);
+        sessionStorage.setItem('crmId', crmId);
       }
     }
+  }, [timelineId, reservationId, crmId]);
 
-    // Fetch reservation info from API using route params
-    const fetchReservationInfo = async (timelineId: string, reservationId: string, crmId: string) => {
+  // Call timeline and reservation GET APIs when loading home page
+  useEffect(() => {
+    if (!timelineId || !reservationId) return;
+
+    const fetchTimelineInfo = async () => {
       try {
-        const url = `https://demo.pms.instio.co/api/pms/v2/reservation/${timelineId}/${reservationId}/info`;
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        const url = `${API_BASE}/timeline/${timelineId}/info`;
+        const res = await fetch(url, { method: 'GET', headers: JSON_HEADERS });
+        if (!res.ok) throw new Error(`Timeline API error: ${res.status}`);
+        const data = await res.json();
+        if (data) sessionStorage.setItem('timelineInfo', JSON.stringify(data));
+      } catch (err) {
+        console.error('Error fetching timeline info:', err);
+      }
+    };
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log('Reservation info:', data);
-        
-        // Extract first name from response data
+    const fetchReservationInfo = async () => {
+      const companyCRMId = crmId || timelineId || '';
+      if (!companyCRMId) return;
+      try {
+        const url = `${API_BASE}/reservation/${reservationId}/${companyCRMId}/info`;
+        const res = await fetch(url, { method: 'GET', headers: JSON_HEADERS });
+        if (!res.ok) throw new Error(`Reservation API error: ${res.status}`);
+        const data = await res.json();
+        sessionStorage.setItem('reservationInfo', JSON.stringify(data));
         const firstName = data?.data?.firstName || data?.firstName || data?.guest?.firstName || data?.guestInfo?.firstName || '';
-        
-        // Store first name in localStorage
         if (firstName) {
           localStorage.setItem('userFirstName', firstName);
+          window.dispatchEvent(new Event('storage'));
         }
-        
-        // Store companyCRMId (crm-id from URL) in localStorage
-        if (crmId) {
-          localStorage.setItem('companyCRMId', crmId);
+        if (crmId) localStorage.setItem('companyCRMId', crmId);
+        const companyId = data?.data?.companyId || data?.companyId || data?.data?.reservation?.companyId || data?.reservation?.companyId || '';
+        if (companyId) {
+          sessionStorage.setItem('companyId', companyId);
+          localStorage.setItem('companyCRMId', companyId);
         }
-        
-        // Extract and store siteId from API response
-        const siteId = data?.data?.siteId || data?.siteId || data?.reservation?.siteId || '';
+        const siteId = data?.data?.siteId || data?.siteId || data?.data?.reservation?.siteId || data?.reservation?.siteId || '';
         if (siteId) {
+          sessionStorage.setItem('siteId', siteId);
           localStorage.setItem('siteId', siteId);
         }
       } catch (err) {
@@ -102,10 +115,7 @@ const Home: React.FC = () => {
       }
     };
 
-    // Use route params to make API call
-    if (timelineId && reservationId) {
-      fetchReservationInfo(timelineId, reservationId, crmId || '');
-    }
+    fetchTimelineInfo().then(() => fetchReservationInfo());
   }, [timelineId, reservationId, crmId]);
 
   useEffect(() => {

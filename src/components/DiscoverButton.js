@@ -3,18 +3,14 @@ import { useAppNavigation } from '../hooks/useAppNavigation.ts';
 import './DiscoverButton.css';
 
 const DiscoverButton = ({ onDiscoverMore }) => {
-  const { navigate, getCurrentIds } = useAppNavigation();
+  const { navigate } = useAppNavigation();
 
   const handleDiscoverClick = () => {
     if (onDiscoverMore) {
       onDiscoverMore();
     } else {
-      const { timelineId, reservationId, crmId } = getCurrentIds();
-      if (timelineId && reservationId) {
-        navigate(`/home/${timelineId}/${reservationId}${crmId ? `/${crmId}` : ''}`);
-      } else {
-        navigate('/home');
-      }
+      // navigate('/home') uses base URL /timelineId/reservationId/crmId/home via useAppNavigation
+      navigate('/home');
     }
   };
 

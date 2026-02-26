@@ -3,8 +3,8 @@ import { useLocation } from 'react-router-dom';
 
 /**
  * Hook to parse URL parameters from hash route
- * Primary pattern: #/home/timelineId/reservationId/crmId (like cm-guestapp)
- * Legacy pattern: #//timelineId/reservationId/crmId
+ * New primary pattern: #/timelineId/reservationId/crmId
+ * Legacy patterns: #/home/timelineId/reservationId/crmId, #//timelineId/reservationId/crmId
  */
 export const useUrlParams = () => {
   const location = useLocation();
@@ -18,7 +18,18 @@ export const useUrlParams = () => {
     const parseHash = () => {
       const hash = location.hash;
       
-      // Primary pattern: #/home/timelineId/reservationId/crmId (like cm-guestapp)
+      // New primary pattern: #/timelineId/reservationId/crmId
+      const newPatternMatch = hash.match(/^#\/([^/]+)\/([^/]+)(?:\/([^/]+))?$/);
+      if (newPatternMatch && newPatternMatch[1] !== 'home') {
+        setParams({
+          timelineId: newPatternMatch[1],
+          reservationId: newPatternMatch[2],
+          crmId: newPatternMatch[3],
+        });
+        return;
+      }
+
+      // Legacy pattern: #/home/timelineId/reservationId/crmId
       const homeMatch = hash.match(/#\/home\/([^/]+)\/([^/]+)(?:\/([^/]+))?/);
       if (homeMatch) {
         setParams({

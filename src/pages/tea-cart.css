@@ -1,4 +1,4 @@
-.tea-card-page {
+.tea-cart-page {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,7 +12,7 @@
   flex-direction: column;
 }
 
-.tea-card-background {
+.tea-cart-background {
   position: fixed;
   top: 0;
   left: 0;
@@ -22,7 +22,7 @@
   z-index: 1;
 }
 
-.tea-card-overlay {
+.tea-cart-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -32,7 +32,7 @@
   z-index: 2;
 }
 
-.tea-card-topbar {
+.tea-cart-topbar {
   position: relative;
   z-index: 5;
   display: flex;
@@ -45,7 +45,7 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.tea-card-back-button {
+.tea-cart-back-button {
   background: none;
   border: none;
   color: #302F27;
@@ -56,7 +56,7 @@
   justify-content: center;
 }
 
-.tea-card-title {
+.tea-cart-title {
   font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
   font-size: 15px;
   font-weight: 400;
@@ -67,7 +67,7 @@
   margin: 0;
 }
 
-.tea-card-call-button {
+.tea-cart-call-button {
   background: none;
   border: none;
   color: #302F27;
@@ -78,13 +78,13 @@
   justify-content: center;
 }
 
-.tea-card-content {
+.tea-cart-content {
   position: relative;
   z-index: 3;
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 0 0 100px;
+  padding: 0 0 var(--content-bottom-safe);
   max-width: 375px;
   margin: 0 auto;
   width: 100%;
@@ -92,24 +92,24 @@
   overflow-y: auto;
 }
 
-.tea-card-hero-image-container {
+.tea-cart-hero-image-container {
   width: 100%;
   margin-bottom: 0;
 }
 
-.tea-card-hero-image {
+.tea-cart-hero-image {
   width: 100%;
   height: auto;
   object-fit: cover;
   display: block;
 }
 
-.tea-card-description-section {
+.tea-cart-description-section {
   padding: 24px 20px;
   background: #ffffff;
 }
 
-.tea-card-description {
+.tea-cart-description {
   font-family: 'Avenir Next', 'Avenir', sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -119,24 +119,24 @@
   margin: 0;
 }
 
-.tea-card-timings-section {
+.tea-cart-timings-section {
   padding: 0 20px 24px;
   background: #ffffff;
 }
 
-.tea-card-section-header {
+.tea-cart-section-header {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 12px;
 }
 
-.tea-card-section-icon {
+.tea-cart-section-icon {
   flex-shrink: 0;
   color: #D4C5B9;
 }
 
-.tea-card-section-title {
+.tea-cart-section-title {
   font-family: 'Adobe Garamond Pro', 'Adobe Garamond', 'Garamond', serif;
   font-size: 18px;
   font-weight: 400;
@@ -147,14 +147,14 @@
   margin: 0;
 }
 
-.tea-card-timings-list {
+.tea-cart-timings-list {
   list-style: none;
   padding: 0;
   margin: 0;
   padding-left: 28px;
 }
 
-.tea-card-timing-item {
+.tea-cart-timing-item {
   font-family: 'Avenir Next', 'Avenir', sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -165,7 +165,7 @@
   position: relative;
 }
 
-.tea-card-timing-item::before {
+.tea-cart-timing-item::before {
   content: '•';
   position: absolute;
   left: -16px;
@@ -173,46 +173,46 @@
   font-size: 16px;
 }
 
-.tea-card-timing-item:last-child {
+.tea-cart-timing-item:last-child {
   margin-bottom: 0;
 }
 
 @media (max-width: 375px) {
-  .tea-card-content {
-    padding: 0 0 100px;
+  .tea-cart-content {
+    padding: 0 0 var(--content-bottom-safe);
   }
 
-  .tea-card-description-section,
-  .tea-card-timings-section {
+  .tea-cart-description-section,
+  .tea-cart-timings-section {
     padding-left: 15px;
     padding-right: 15px;
   }
 
-  .tea-card-description,
-  .tea-card-timing-item {
+  .tea-cart-description,
+  .tea-cart-timing-item {
     font-size: 13px;
   }
 
-  .tea-card-section-title {
+  .tea-cart-section-title {
     font-size: 16px;
   }
 }
 
 @media (min-width: 376px) {
-  .tea-card-page {
+  .tea-cart-page {
     left: 50%;
     transform: translateX(-50%);
     max-width: 375px;
   }
   
-  .tea-card-background {
+  .tea-cart-background {
     left: 50%;
     transform: translateX(-50%);
     max-width: 375px;
     width: 375px;
   }
   
-  .tea-card-overlay {
+  .tea-cart-overlay {
     left: 50%;
     transform: translateX(-50%);
     max-width: 375px;

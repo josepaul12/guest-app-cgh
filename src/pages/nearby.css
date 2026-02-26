@@ -84,7 +84,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 24px 0 100px;
+  padding: 24px 0 var(--content-bottom-safe);
   max-width: 375px;
   margin: 0 auto;
   width: 100%;
@@ -163,7 +163,7 @@
 
 @media (max-width: 375px) {
   .nearby-content {
-    padding: 15px 0;
+    padding: 15px 0 var(--content-bottom-safe);
   }
 
   .nearby-attraction {

@@ -1,0 +1,95 @@
+.content-required-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #000;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-required-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 1;
+}
+
+.content-required-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+@media (min-width: 376px) {
+  .content-required-page,
+  .content-required-background,
+  .content-required-overlay {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 375px;
+    width: 375px;
+  }
+}
+
+.content-required-topbar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  min-height: 44px;
+  flex-shrink: 0;
+}
+
+.content-required-back-button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.content-required-title {
+  margin-left: 12px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.content-required-content {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  padding-bottom: var(--content-bottom-safe);
+}
+
+.content-required-message {
+  font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+}

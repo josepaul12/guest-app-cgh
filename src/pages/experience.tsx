@@ -1,10 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useAppNavigation } from '../hooks/useAppNavigation.ts';
 import './experience.css';
 import experiencesImage from '../assets/images/imagesmarari/Experiences.jpg';
 
 const Experience: React.FC = () => {
-  const navigate = useNavigate();
+  const { navigate, navigateRaw } = useAppNavigation();
   const descriptionText = `Marari Beach offers a unique opportunity to immerse yourself in the local culture, relax in serene surroundings, savor authentic cuisine, and explore diverse ecosystems. Whether you're seeking adventure, tranquility, or cultural enrichment, our experiences are designed to help you soak in space and silence.`;
 
   const actionButtons = [
@@ -20,7 +20,7 @@ const Experience: React.FC = () => {
       <div className="experience-overlay" />
       
       <div className="experience-topbar">
-        <button className="experience-back-button" onClick={() => navigate(-1)} aria-label="Back">
+        <button className="experience-back-button" onClick={() => navigateRaw(-1)} aria-label="Back">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
@@ -54,7 +54,9 @@ const Experience: React.FC = () => {
               aria-label={buttonText}
               onClick={
                 buttonText === 'Curated Experiences' ? () => navigate('/curated-experiences') :
+                buttonText === 'Things to do Outside' ? () => navigate('/things-to-do-outside') :
                 buttonText === 'In-house Activities' ? () => navigate('/activities') :
+                buttonText === 'Excursions' ? () => navigate('/excursions') :
                 undefined
               }
             >

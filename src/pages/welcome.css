@@ -132,7 +132,7 @@
   position: relative;
   z-index: 5;
   padding: 0 32px;
-  padding-bottom: 100px;
+  padding-bottom: var(--content-bottom-safe);
   margin-top: 0;
   display: flex;
   flex-direction: column;
@@ -169,14 +169,10 @@
   width: 100%;
   max-width: 321px;
   padding: 14px 34px;
-  background: rgba(0, 0, 0, 0.37);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(30px);
+  background: #CAA593;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(0, 0, 0, 0.15);
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 500;
   font-size: 15px;
@@ -189,74 +185,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-}
-
-.welcome-button::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  background: linear-gradient(
-    145deg,
-    rgba(0, 0, 0, 0.4) 10%,
-    rgba(255, 255, 255, 0.075) 30%,
-    rgba(255, 255, 255, 0.05) 60%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-
-.welcome-button::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    135deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.15) 45%,
-    rgba(255, 255, 255, 0.3) 50%,
-    rgba(255, 255, 255, 0.15) 55%,
-    transparent 100%
-  );
-  pointer-events: none;
-  z-index: 1;
-  animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%) translateY(-100%) rotate(135deg);
-  }
-  100% {
-    transform: translateX(100%) translateY(100%) rotate(135deg);
-  }
 }
 
 .welcome-button:hover {
-  background: rgba(0, 0, 0, 0.95);
+  background: #B89582;
 }
 
 .welcome-button:active {
   transform: scale(0.97);
-  background: rgba(255, 255, 255, 0.25);
+  background: #A68573;
 }
 
-.welcome-button span,
-.welcome-button {
-  position: relative;
-  z-index: 2;
-}
 
 /* Responsive design */
 @media (max-width: 375px) {
   .welcome-content {
     padding: 0 20px;
-    padding-bottom: 100px;
+    padding-bottom: var(--content-bottom-safe);
   }
   
   .welcome-text {

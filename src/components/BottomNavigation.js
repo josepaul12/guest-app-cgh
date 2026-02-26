@@ -3,22 +3,12 @@ import { useAppNavigation } from '../hooks/useAppNavigation.ts';
 import './BottomNavigation.css';
 
 const BottomNavigation = ({ activeTab }) => {
-  const { navigate, getCurrentIds } = useAppNavigation();
+  const { navigate } = useAppNavigation();
 
   const handleTabChange = (tab) => {
-    const { timelineId, reservationId, crmId } = getCurrentIds();
-    
-    if (tab === 'home') {
-      if (timelineId && reservationId) {
-        navigate(`/home/${timelineId}/${reservationId}${crmId ? `/${crmId}` : ''}`);
-      } else {
-        navigate('/home');
-      }
-    } else if (tab === 'message') {
-      navigate('/message');
-    } else if (tab === 'highlights') {
-      navigate('/highlights');
-    }
+    if (tab === 'home') navigate('/home');
+    else if (tab === 'message') navigate('/message');
+    else if (tab === 'highlights') navigate('/highlights');
   };
 
   return (

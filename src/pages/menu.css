@@ -113,7 +113,8 @@
   justify-content: center;
 }
 
-.menu-room-number {
+.menu-room-number,
+.menu-user-number {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 12px;

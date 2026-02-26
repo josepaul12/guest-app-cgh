@@ -3,6 +3,7 @@ import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import PageLayout from './components/PageLayout';
 import RouteHandler from './components/RouteHandler.tsx';
+import BaseLayout from './components/BaseLayout.tsx';
 import Home from './pages/home.tsx';
 import Welcome from './pages/welcome.tsx';
 import Gallery from './pages/gallery.tsx';
@@ -19,12 +20,13 @@ import TodaysRecommendation from './pages/todays-recommendation.tsx';
 import BeachShack from './pages/beach-shack.tsx';
 import FarmKitchen from './pages/farm-kitchen.tsx';
 import BeachGrill from './pages/beach-grill.tsx';
-import TeaCard from './pages/tea-card.tsx';
+import TeaCard from './pages/tea-cart.tsx';
 import BeachHouseBar from './pages/beach-house-bar.tsx';
 import PoolVillaDining from './pages/pool-villa-dining.tsx';
 import ExclusiveDining from './pages/exclusive-dining.tsx';
 import About from './pages/about.tsx';
 import OtherDestinations from './pages/other-destinations.tsx';
+import ContentRequired from './pages/content-required.tsx';
 import Ayurveda from './pages/ayurveda.tsx';
 import Rooms from './pages/rooms.tsx';
 import Wellness from './pages/wellness.tsx';
@@ -41,57 +43,50 @@ function App() {
       <RouteHandler>
         <div className="App">
           <Routes>
-            {/* Landing page */}
+            {/* Landing when no IDs in URL (e.g. #/) */}
             <Route path="/" element={<LandingPage />} />
-            
-            {/* Main route pattern: #/home/timelineId/reservationId/crmId -> Home */}
-            {/* Also handles: #//timelineId/reservationId/crmId via RouteHandler */}
-            <Route path="/home/:timelineId/:reservationId/:crmId?" element={<PageLayout><Home /></PageLayout>} />
-            <Route path="/home" element={<PageLayout><Home /></PageLayout>} />
-          
-          {/* Other pages - these will preserve IDs via navigation hook */}
-          <Route path="/welcome" element={<PageLayout><Welcome /></PageLayout>} />
-          <Route path="/gallery" element={<PageLayout><Gallery /></PageLayout>} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/weather" element={<PageLayout><Weather /></PageLayout>} />
-          <Route path="/nearby" element={<PageLayout><Nearby /></PageLayout>} />
-          <Route path="/offers" element={<PageLayout><Offers /></PageLayout>} />
-          
-          {/* Experience pages */}
-          <Route path="/experience" element={<PageLayout><Experience /></PageLayout>} />
-          <Route path="/activities" element={<PageLayout><Activities /></PageLayout>} />
-          <Route path="/curated-experiences" element={<PageLayout><CuratedExperiences /></PageLayout>} />
-          <Route path="/fishing-village-tour" element={<PageLayout><FishingVillageTour /></PageLayout>} />
-          
-          {/* Food & Drinks */}
-          <Route path="/food-and-drinks" element={<PageLayout><FoodAndDrinks /></PageLayout>} />
-          <Route path="/chakara" element={<PageLayout><Chakara /></PageLayout>} />
-          <Route path="/todays-recommendation" element={<PageLayout><TodaysRecommendation /></PageLayout>} />
-          <Route path="/beach-shack" element={<PageLayout><BeachShack /></PageLayout>} />
-          <Route path="/farm-kitchen" element={<PageLayout><FarmKitchen /></PageLayout>} />
-          <Route path="/beach-grill" element={<PageLayout><BeachGrill /></PageLayout>} />
-          <Route path="/tea-card" element={<PageLayout><TeaCard /></PageLayout>} />
-          <Route path="/beach-house-bar" element={<PageLayout><BeachHouseBar /></PageLayout>} />
-          <Route path="/pool-villa-dining" element={<PageLayout><PoolVillaDining /></PageLayout>} />
-          <Route path="/exclusive-dining" element={<PageLayout><ExclusiveDining /></PageLayout>} />
-          
-          {/* Other pages */}
-          <Route path="/about" element={<PageLayout><About /></PageLayout>} />
-          <Route path="/other-destinations" element={<PageLayout><OtherDestinations /></PageLayout>} />
-          <Route path="/ayurveda" element={<PageLayout><Ayurveda /></PageLayout>} />
-          <Route path="/rooms" element={<PageLayout><Rooms /></PageLayout>} />
-          <Route path="/wellness" element={<PageLayout><Wellness /></PageLayout>} />
-          <Route path="/guest-services" element={<PageLayout><GuestServices /></PageLayout>} />
-          <Route path="/facilities" element={<PageLayout><Facilities /></PageLayout>} />
-          <Route path="/housekeeping" element={<PageLayout><Housekeeping /></PageLayout>} />
-          
-          {/* Message page */}
-          <Route path="/message" element={<PageLayout><Message /></PageLayout>} />
-          
-          {/* Highlights page */}
-          <Route path="/highlights" element={<PageLayout><div className="highlights-page">Highlights page coming soon...</div></PageLayout>} />
-          
-            {/* Default redirect */}
+
+            {/* Base URL: #/timelineId/reservationId/crmId (and optional page) - every page keeps this base */}
+            <Route path="/:timelineId/:reservationId/:crmId?" element={<BaseLayout />}>
+              <Route index element={<LandingPage />} />
+              <Route path="home" element={<PageLayout><Home /></PageLayout>} />
+              <Route path="welcome" element={<PageLayout><Welcome /></PageLayout>} />
+              <Route path="gallery" element={<PageLayout><Gallery /></PageLayout>} />
+              <Route path="menu" element={<Menu />} />
+              <Route path="weather" element={<PageLayout><Weather /></PageLayout>} />
+              <Route path="nearby" element={<PageLayout><Nearby /></PageLayout>} />
+              <Route path="offers" element={<PageLayout><Offers /></PageLayout>} />
+              <Route path="experience" element={<PageLayout><Experience /></PageLayout>} />
+              <Route path="activities" element={<PageLayout><Activities /></PageLayout>} />
+              <Route path="curated-experiences" element={<PageLayout><CuratedExperiences /></PageLayout>} />
+              <Route path="fishing-village-tour" element={<PageLayout><FishingVillageTour /></PageLayout>} />
+              <Route path="food-and-drinks" element={<PageLayout><FoodAndDrinks /></PageLayout>} />
+              <Route path="chakara" element={<PageLayout><Chakara /></PageLayout>} />
+              <Route path="todays-recommendation" element={<PageLayout><TodaysRecommendation /></PageLayout>} />
+              <Route path="beach-shack" element={<PageLayout><BeachShack /></PageLayout>} />
+              <Route path="farm-kitchen" element={<PageLayout><FarmKitchen /></PageLayout>} />
+              <Route path="beach-grill" element={<PageLayout><BeachGrill /></PageLayout>} />
+              <Route path="tea-cart" element={<PageLayout><TeaCard /></PageLayout>} />
+              <Route path="beach-house-bar" element={<PageLayout><BeachHouseBar /></PageLayout>} />
+              <Route path="pool-villa-dining" element={<PageLayout><PoolVillaDining /></PageLayout>} />
+              <Route path="exclusive-dining" element={<PageLayout><ExclusiveDining /></PageLayout>} />
+              <Route path="about" element={<PageLayout><About /></PageLayout>} />
+              <Route path="brand" element={<PageLayout><ContentRequired title="Brand" message="Content required" /></PageLayout>} />
+              <Route path="core-values" element={<PageLayout><ContentRequired title="Core values" message="Content required" /></PageLayout>} />
+              <Route path="things-to-do-outside" element={<PageLayout><ContentRequired title="Things to do Outside" message="Content required" /></PageLayout>} />
+              <Route path="excursions" element={<PageLayout><ContentRequired title="Excursions" message="Content required" /></PageLayout>} />
+              <Route path="other-destinations" element={<PageLayout><OtherDestinations /></PageLayout>} />
+              <Route path="ayurveda" element={<PageLayout><Ayurveda /></PageLayout>} />
+              <Route path="rooms" element={<PageLayout><Rooms /></PageLayout>} />
+              <Route path="wellness" element={<PageLayout><Wellness /></PageLayout>} />
+              <Route path="guest-services" element={<PageLayout><GuestServices /></PageLayout>} />
+              <Route path="facilities" element={<PageLayout><Facilities /></PageLayout>} />
+              <Route path="housekeeping" element={<PageLayout><Housekeeping /></PageLayout>} />
+              <Route path="message" element={<PageLayout><Message /></PageLayout>} />
+              <Route path="highlights" element={<PageLayout><div className="highlights-page">Highlights page coming soon...</div></PageLayout>} />
+              <Route path="*" element={<Navigate to="." replace />} />
+            </Route>
+
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>

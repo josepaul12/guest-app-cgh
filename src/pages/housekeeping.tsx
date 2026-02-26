@@ -4,15 +4,18 @@ import './housekeeping.css';
 
 interface ServiceItem {
   _id?: string;
+  id?: string;
   name?: string;
+  Name?: string;
   label?: string;
   icon?: string;
+  Icon?: string;
   iconUrl?: string;
   [key: string]: any;
 }
 
 const Housekeeping: React.FC = () => {
-  const { navigate } = useAppNavigation();
+  const { navigateRaw } = useAppNavigation();
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [notes, setNotes] = useState<string>('');
   const [services, setServices] = useState<ServiceItem[]>([]);
@@ -28,14 +31,84 @@ const Housekeeping: React.FC = () => {
       setLoading(true);
       setError(null);
       
-      // Get IDs from localStorage (set by home page or URL params)
-      const timelineId = localStorage.getItem('timelineId') || '606d7c06169aae44d6a201bd';
-      const reservationId = localStorage.getItem('reservationId') || '698d8c91a2970c8cddcd24ad';
-      const siteId = localStorage.getItem('siteId') || '60681c39169aae1a65fb0ead';
-      const companyId = localStorage.getItem('companyCRMId') || '60647362169aae1a65fb0db0';
+      // Get IDs from sessionStorage (set by RouteHandler)
+      const timelineId = sessionStorage.getItem('timelineId');
+      const reservationId = sessionStorage.getItem('reservationId');
+
+      // Prefer siteId from timeline info API response (stored as timelineInfo)
+      let siteId: string | null = null;
+      const timelineInfoStr = sessionStorage.getItem('timelineInfo');
+      if (timelineInfoStr) {
+        try {
+          const timelineInfo = JSON.parse(timelineInfoStr);
+          const fromTimeline =
+            timelineInfo?.data?.siteId ??
+            timelineInfo?.siteId ??
+            timelineInfo?.data?.site?.id ??
+            timelineInfo?.site?.id ??
+            '';
+          if (fromTimeline) {
+            siteId = fromTimeline;
+            sessionStorage.setItem('siteId', fromTimeline);
+            localStorage.setItem('siteId', fromTimeline);
+          }
+        } catch {
+          // ignore parse error
+        }
+      }
+
+      // Fallback: sessionStorage/localStorage (may have been set by reservation or timeline)
+      if (!siteId) {
+        siteId = sessionStorage.getItem('siteId') || localStorage.getItem('siteId');
+      }
+
+      // Get companyId from sessionStorage (reservation info)
+      let companyId = sessionStorage.getItem('companyId') || localStorage.getItem('companyCRMId');
+
+      // If siteId or companyId still missing, try reservation info
+      if (!companyId || !siteId) {
+        const reservationInfoStr = sessionStorage.getItem('reservationInfo');
+        if (reservationInfoStr) {
+          try {
+            const reservationInfo = JSON.parse(reservationInfoStr);
+            const extractedCompanyId =
+              reservationInfo?.data?.companyId ??
+              reservationInfo?.companyId ??
+              reservationInfo?.data?.reservation?.companyId ??
+              reservationInfo?.reservation?.companyId;
+            const extractedSiteId =
+              reservationInfo?.data?.siteId ??
+              reservationInfo?.siteId ??
+              reservationInfo?.data?.reservation?.siteId ??
+              reservationInfo?.reservation?.siteId;
+
+            if (extractedCompanyId && !companyId) {
+              companyId = extractedCompanyId;
+              sessionStorage.setItem('companyId', extractedCompanyId);
+            }
+            if (extractedSiteId && !siteId) {
+              siteId = extractedSiteId;
+              sessionStorage.setItem('siteId', extractedSiteId);
+              localStorage.setItem('siteId', extractedSiteId);
+            }
+          } catch (parseErr) {
+            console.error('Error parsing reservation info:', parseErr);
+          }
+        }
+      }
       
-      const url = `https://demo.wo.instio.co/api/wo-attributes?companyId=${companyId}&siteId=${siteId}&timelineId=${timelineId}&reservationId=${reservationId}&isRoot=true`;
-      
+      if (!timelineId || !reservationId) {
+        setError('Missing timeline or reservation information. Please reload the page.');
+        setLoading(false);
+        return;
+      }
+
+      const isRoot = true;
+      const companyIdParam = companyId || '';
+      const siteIdParam = siteId || '';
+
+      const url = `https://demo.wo.instio.co/api/wo-attributes?companyId=${encodeURIComponent(companyIdParam)}&siteId=${encodeURIComponent(siteIdParam)}&isRoot=${isRoot}`;
+
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -48,12 +121,26 @@ const Housekeeping: React.FC = () => {
       }
 
       const result = await response.json();
-      
+      console.log('WO Attributes API response:', result);
+
+      // Get array from response (data array with name & icon per item)
+      let list: ServiceItem[] = [];
       if (result.code === 200 && result.data && Array.isArray(result.data)) {
-        setServices(result.data);
-      } else {
-        setServices([]);
+        list = result.data;
+      } else if (Array.isArray(result)) {
+        list = result;
+      } else if (result.data && Array.isArray(result.data)) {
+        list = result.data;
       }
+
+      // Normalize: ensure each item has name and icon from response
+      setServices(
+        list.map((item: ServiceItem) => ({
+          ...item,
+          name: item.name ?? item.Name ?? item.label ?? '',
+          icon: item.icon ?? item.Icon ?? item.iconUrl ?? '',
+        }))
+      );
     } catch (err) {
       console.error('Error fetching services:', err);
       setError('Failed to load services. Please try again.');
@@ -64,14 +151,17 @@ const Housekeeping: React.FC = () => {
   };
 
   const renderIcon = (service: ServiceItem) => {
+    // Get icon from response (check both 'icon' and 'Icon' fields)
+    const icon = service.icon || service.Icon || service.iconUrl;
+    
     // If API provides icon URL
-    if (service.iconUrl) {
-      return <img src={service.iconUrl} alt={service.name || service.label || ''} style={{ width: '32px', height: '32px' }} />;
+    if (icon && (icon.startsWith('http') || icon.startsWith('data:') || icon.startsWith('/'))) {
+      return <img src={icon} alt={service.name || service.Name || service.label || ''} style={{ width: '32px', height: '32px', objectFit: 'contain' }} />;
     }
     
     // If API provides SVG string
-    if (service.icon && service.icon.startsWith('<svg')) {
-      return <div dangerouslySetInnerHTML={{ __html: service.icon }} style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} />;
+    if (icon && typeof icon === 'string' && icon.startsWith('<svg')) {
+      return <div dangerouslySetInnerHTML={{ __html: icon }} style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} />;
     }
 
     // Default fallback icon
@@ -84,7 +174,8 @@ const Housekeeping: React.FC = () => {
   };
 
   const getServiceName = (service: ServiceItem): string => {
-    return service.name || service.label || 'Service';
+    // Get name from response (check both 'name' and 'Name' fields)
+    return service.name || service.Name || service.label || 'Service';
   };
 
   const getServiceId = (service: ServiceItem): string => {
@@ -115,7 +206,7 @@ const Housekeeping: React.FC = () => {
       <div className="housekeeping-overlay" />
       
       <div className="housekeeping-topbar">
-        <button className="housekeeping-back-button" onClick={() => navigate(-1)} aria-label="Back">
+        <button className="housekeeping-back-button" onClick={() => navigateRaw(-1)} aria-label="Back">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
@@ -167,7 +258,7 @@ const Housekeeping: React.FC = () => {
               const serviceName = getServiceName(service);
               return (
                 <button
-                  key={service._id || service.id || index}
+                  key={service._id ?? service.id ?? String(index)}
                   className={`housekeeping-service-button ${selectedService === serviceId ? 'selected' : ''}`}
                   onClick={() => handleServiceSelect(serviceId)}
                   aria-label={serviceName}

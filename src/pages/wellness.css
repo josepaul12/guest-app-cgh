@@ -85,7 +85,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 0 0 100px;
+  padding: 0 0 var(--content-bottom-safe);
   max-width: 375px;
   margin: 0 auto;
   width: 100%;
@@ -143,7 +143,7 @@
 
 @media (max-width: 375px) {
   .wellness-content {
-    padding: 0 0 100px;
+    padding: 0 0 var(--content-bottom-safe);
   }
 
   .wellness-text-section {
