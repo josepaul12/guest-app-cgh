@@ -4,7 +4,9 @@ import './message.css';
 const Message: React.FC = () => {
   return (
     <div className="message-page">
-      Message page coming soon...
+      <div className="message-content">
+        Message page coming soon...
+      </div>
     </div>
   );
 };

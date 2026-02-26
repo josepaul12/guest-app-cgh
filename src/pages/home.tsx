@@ -217,6 +217,7 @@ const Home: React.FC = () => {
           hasOverlay={true}
           noLabelBackground={true}
           labelClassName="font-caslon"
+          onClick={() => navigate('/stories')}
         />
 
         <div className="grid two-cols">

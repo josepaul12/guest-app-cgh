@@ -6,7 +6,8 @@ import barLoungeImage from '../assets/images/imagesmarari/bar-lounge.png';
 import beachDiningImage from '../assets/images/imagesmarari/beach-dining.png';
 import roomServiceImage from '../assets/images/imagesmarari/room-service.png';
 import restaurant2Image from '../assets/images/imagesmarari/restaurant-2.png';
-import teaCartImage from '../assets/images/imagesmarari/chaicart.jpg';  
+import teaCartImage from '../assets/images/imagesmarari/chaicart.jpg'; 
+import beachHouseBarImage from '../assets/images/imagesmarari/beachHouseBarImage.png'; 
 
 import backgroundImage from '../assets/images/imagesmarari/food-drinks-bg.png';
 
@@ -51,7 +52,7 @@ const FoodAndDrinks: React.FC = () => {
     },
     {
       id: 7,
-      image: restaurant1Image,
+      image: beachHouseBarImage,
       name: 'Beach House Bar',
       price: '₹350/pax'
     },

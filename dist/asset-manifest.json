@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ga/static/css/main.9b683563.css",
-    "main.js": "/ga/static/js/main.1ef8c317.js",
+    "main.css": "/ga/static/css/main.3cede976.css",
+    "main.js": "/ga/static/js/main.1f8fe9e7.js",
     "static/media/offer-2.png": "/ga/static/media/offer-2.961a4bca1071d1a7d279.png",
     "static/media/offer-3.png": "/ga/static/media/offer-3.0da13ad66622449f55fb.png",
     "static/media/offer-1.png": "/ga/static/media/offer-1.163145184ea6af1de69e.png",
@@ -15,8 +15,10 @@
     "static/media/kite-flying.jpg": "/ga/static/media/kite-flying.e4c6345ef78fa9ab7d1a.jpg",
     "static/media/about-second.png": "/ga/static/media/about-second.9073a3e71685ffbf541d.png",
     "static/media/offer-5.png": "/ga/static/media/offer-5.e88c0f884e76187e0896.png",
+    "static/media/chaicart.jpg": "/ga/static/media/chaicart.1b735fe3426dbbe62952.jpg",
     "static/media/chakara-restaurant.png": "/ga/static/media/chakara-restaurant.6535f4eb67e304637d03.png",
     "static/media/about-hero.png": "/ga/static/media/about-hero.80e19af640a3da7d0579.png",
+    "static/media/beachHouseBarImage.png": "/ga/static/media/beachHouseBarImage.80e19af640a3da7d0579.png",
     "static/media/yoga.jpg": "/ga/static/media/yoga.201fe8525a907e021237.jpg",
     "static/media/room1.png": "/ga/static/media/room1.f72d88cc841e1f488880.png",
     "static/media/fish-feeding.jpg": "/ga/static/media/fish-feeding.4c3d89d3679479df3f57.jpg",
@@ -54,11 +56,11 @@
     "static/media/marari logo.png": "/ga/static/media/marari logo.49292f6a66f2597c6a32.png",
     "static/media/parking.svg": "/ga/static/media/parking.fb46de772a75911687b06dcc1ab0328f.svg",
     "index.html": "/ga/index.html",
-    "main.9b683563.css.map": "/ga/static/css/main.9b683563.css.map",
-    "main.1ef8c317.js.map": "/ga/static/js/main.1ef8c317.js.map"
+    "main.3cede976.css.map": "/ga/static/css/main.3cede976.css.map",
+    "main.1f8fe9e7.js.map": "/ga/static/js/main.1f8fe9e7.js.map"
   },
   "entrypoints": [
-    "static/css/main.9b683563.css",
-    "static/js/main.1ef8c317.js"
+    "static/css/main.3cede976.css",
+    "static/js/main.1f8fe9e7.js"
   ]
 }

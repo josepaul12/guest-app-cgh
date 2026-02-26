@@ -72,6 +72,7 @@ function App() {
               <Route path="exclusive-dining" element={<PageLayout><ExclusiveDining /></PageLayout>} />
               <Route path="about" element={<PageLayout><About /></PageLayout>} />
               <Route path="brand" element={<PageLayout><ContentRequired title="Brand" message="Content required" /></PageLayout>} />
+              <Route path="stories" element={<PageLayout><ContentRequired title="Stories" message="Information required" /></PageLayout>} />
               <Route path="core-values" element={<PageLayout><ContentRequired title="Core values" message="Content required" /></PageLayout>} />
               <Route path="things-to-do-outside" element={<PageLayout><ContentRequired title="Things to do Outside" message="Content required" /></PageLayout>} />
               <Route path="excursions" element={<PageLayout><ContentRequired title="Excursions" message="Content required" /></PageLayout>} />

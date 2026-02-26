@@ -1,7 +1,17 @@
 :root {
   /* Reserve space so content is not hidden under fixed bottom nav (60px) or footer */
   --bottom-nav-height: 60px;
-  --content-bottom-safe: calc(var(--bottom-nav-height) + 32px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --content-bottom-safe: calc(var(--bottom-nav-height) + 32px + var(--safe-area-bottom));
+  /* Viewport height: device visible area (dvh = dynamic for mobile browser UI) */
+  --page-height: 100vh;
+  --page-height-dynamic: 100dvh;
+  --viewport-height: 100vh;
+}
+@supports (height: 100dvh) {
+  :root {
+    --viewport-height: 100dvh;
+  }
 }
 
 * {
@@ -12,6 +22,7 @@
 
 html {
   height: 100%;
+  height: var(--viewport-height);
   overflow: hidden;
   position: fixed;
   width: 100%;
@@ -25,6 +36,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
   height: 100%;
+  height: var(--viewport-height);
   width: 100%;
   position: fixed;
 }
@@ -37,11 +49,49 @@ h1, h2, h3, h4, h5, h6 {
 
 #root {
   width: 100vw;
-  height: 100vh;
+  height: var(--viewport-height);
+  min-height: var(--page-height);
+  max-height: 100vh;
   overflow: hidden;
   position: fixed;
   top: 0;
   left: 0;
+}
+
+@supports (height: 100dvh) {
+  #root {
+    height: var(--viewport-height);
+    min-height: var(--page-height-dynamic);
+    max-height: 100dvh;
+  }
+}
+
+/* Every page root: fill viewport, flex column, no page-level scroll */
+[class$="-page"] {
+  min-height: var(--page-height);
+  height: var(--viewport-height);
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@supports (height: 100dvh) {
+  [class$="-page"] {
+    min-height: var(--page-height-dynamic);
+    height: var(--viewport-height);
+    max-height: 100dvh;
+  }
+}
+
+/* Scroll only inside this viewport (above bottom nav); one scroll region per page */
+[class$="-page"] > [class$="-content"] {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: var(--content-bottom-safe);
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Mobile-first responsive design */

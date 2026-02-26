@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './beach-house-bar.css';
-import restaurant1Image from '../assets/images/imagesmarari/restaurant-1.png';
+import restaurant1Image from '../assets/images/imagesmarari/beachHouseBarImage.png';
 
 const BeachHouseBar: React.FC = () => {
   const navigate = useNavigate();

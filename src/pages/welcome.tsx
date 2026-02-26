@@ -16,14 +16,13 @@ const Welcome: React.FC = () => {
           </svg>
         </button>
       </div>
-      
-      <div className="welcome-logo-container">
-        <div className="welcome-logo">
-          <img src="https://www.cghearth.com/img/brand-logo.png" alt="CGH Earth" />
-        </div>
-      </div>
-      
+
       <div className="welcome-content">
+        <div className="welcome-logo-container">
+          <div className="welcome-logo">
+            <img src="https://www.cghearth.com/img/brand-logo.png" alt="CGH Earth" />
+          </div>
+        </div>
         <p className="welcome-text">
           CGH Earth conceives and organizes truly remarkable travel experiences over multiple destinations in southern India. A family owned enterprise, the group began its operations in 1954 with their flagship property, the Casino Hotel, in Willingdon Island, Kochi.
           <br /><br />
