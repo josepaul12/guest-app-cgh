@@ -78,6 +78,14 @@ function App() {
               <Route path="excursions" element={<PageLayout><ContentRequired title="Excursions" message="Content required" /></PageLayout>} />
               <Route path="other-destinations" element={<PageLayout><OtherDestinations /></PageLayout>} />
               <Route path="ayurveda" element={<PageLayout><Ayurveda /></PageLayout>} />
+              <Route
+                path="ayurveda-menu"
+                element={
+                  <PageLayout>
+                    <ContentRequired title="Ayurveda menu" message="Information required" />
+                  </PageLayout>
+                }
+              />
               <Route path="rooms" element={<PageLayout><Rooms /></PageLayout>} />
               <Route path="wellness" element={<PageLayout><Wellness /></PageLayout>} />
               <Route path="guest-services" element={<PageLayout><GuestServices /></PageLayout>} />

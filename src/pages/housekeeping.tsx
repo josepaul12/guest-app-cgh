@@ -152,7 +152,13 @@ const Housekeeping: React.FC = () => {
 
   const renderIcon = (service: ServiceItem) => {
     // Get icon from response (check both 'icon' and 'Icon' fields)
-    const icon = service.icon || service.Icon || service.iconUrl;
+    const rawIcon = service.icon || service.Icon || service.iconUrl;
+    let icon = rawIcon;
+    
+    // If API returns a relative path like ".tmp/images/xyz.svg", use image API endpoint
+    if (icon && (icon.startsWith('.tmp/') || icon.startsWith('tmp/'))) {
+      icon = `https://demo.wo.instio.co/api/wo/general/images?filename=${icon}`;
+    }
     
     // If API provides icon URL
     if (icon && (icon.startsWith('http') || icon.startsWith('data:') || icon.startsWith('/'))) {
@@ -263,7 +269,7 @@ const Housekeeping: React.FC = () => {
                   onClick={() => handleServiceSelect(serviceId)}
                   aria-label={serviceName}
                 >
-                  <div className="housekeeping-service-icon">
+                  <div className={`housekeeping-service-icon ${selectedService === serviceId ? 'selected' : ''}`}>
                     {renderIcon(service)}
                   </div>
                   <span className="housekeeping-service-label">{serviceName}</span>

@@ -12,14 +12,14 @@ const Rooms: React.FC = () => {
       image: room1Image,
       title: 'Garden Villa',
       bedConfig: '1 king bed or 2 twin beds',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      description: 'The cottages at Marari reflect the culture and lifestyle of the fisherman community. Infused with a strongly native aesthetic, the roofs are thatched with coconut leaves. Our bathrooms echo nature, to offer you the experience of bathing under the open skies. The serene, balmy private pools and sea breeze lull you into deep relaxation. There are three types of rooms at Marari: Garden Villas, Garden Villas with Pool and Deluxe Garden Villas with Private Pool.'
     },
     {
       id: 2,
       image: room2Image,
       title: 'Garden Pool Villa',
       bedConfig: '1 king bed or 2 twin beds',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      description: 'The cottages at Marari reflect the culture and lifestyle of the fisherman community. Infused with a strongly native aesthetic, the roofs are thatched with coconut leaves. Our bathrooms echo nature, to offer you the experience of bathing under the open skies. The serene, balmy private pools and sea breeze lull you into deep relaxation. There are three types of rooms at Marari: Garden Villas, Garden Villas with Pool and Deluxe Garden Villas with Private Pool.'
     }
   ];
 

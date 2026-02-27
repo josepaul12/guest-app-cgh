@@ -78,7 +78,12 @@ const Offers: React.FC = () => {
               />
             </div>
             <div className="offers-offer-content">
-              <button className="offers-know-more-button">Know More</button>
+              <button
+                className="offers-know-more-button"
+                onClick={() => window.open('https://www.cghearth.com/', '_blank')}
+              >
+                Know More
+              </button>
             </div>
           </div>
         ))}
