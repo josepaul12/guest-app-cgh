@@ -42,7 +42,7 @@ const Wellness: React.FC = () => {
             <h2 className="wellness-section-heading">Herbs and oils</h2>
             <div className="wellness-text-content">
               <p className="wellness-paragraph">
-``````````````                Inspired by the first sound of creation, OM, the resort in Gokarana on Om Beach is a perfect setting to enable one to hear the ‘voice of the inner self’.
+Inspired by the first sound of creation, OM, the resort in Gokarana on Om Beach is a perfect setting to enable one to hear the ‘voice of the inner self’.
               </p>
               <p className="wellness-paragraph">
                 Set in wilderness on the shoreline of the Konkan Coast, SwaSwara is cast in the colours of the earth and its form and spirit celebrates simplicity and purity, in keeping with our ethos of a well-being holiday. SwaSwara is a sanctuary for your Prakruti or the innermost nature of an individual - that special blend of qualities and features that grant it uniqueness! Its goal is to offer a time away from all the clutter in your life and transport you into a nurturing space that is calming, renewing and exhilarating for you and your loved ones. A SwaSwara well-being can be experienced in many ways. To some it is that closeness to raw nature that forms the central focus of a meaningful holiday; to others that same well-being is achieved through a combination of nature activities with creative explorations, healthy cooking, meditative moods, Yoga Asana practices and rejuvenating Ayurveda therapies; and for those in search for a deeper sense of healing, the curated programmes focused on Ayurveda and Yoga therapies have a lasting impact on their lives. Our guests can choose programmes that start at one night and going up to 28 nights.
@@ -66,9 +66,7 @@ const Wellness: React.FC = () => {
             <div className="wellness-text-content">
               <p className="wellness-paragraph">
               Set in wilderness on the shoreline of the Konkan Coast, SwaSwara is cast in the colours of the earth and its form and spirit celebrates simplicity and purity, in keeping with our ethos of a well-being holiday. SwaSwara is a sanctuary for your Prakruti or the innermost nature of an individual - that special blend of qualities and features that grant it uniqueness! Its goal is to offer a time away from all the clutter in your life and transport you into a nurturing space that is calming, renewing and exhilarating for you and your loved ones.</p>
-              <p className="wellness-paragraph">
-                Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-              </p>
+              
             </div>
           </div>
         </div>

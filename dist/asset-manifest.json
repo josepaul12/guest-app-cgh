@@ -1,14 +1,17 @@
 {
   "files": {
-    "main.css": "/ga/static/css/main.f772b7fe.css",
-    "main.js": "/ga/static/js/main.47402cb9.js",
+    "main.css": "/ga/static/css/main.4fc65006.css",
+    "main.js": "/ga/static/js/main.da08033b.js",
+    "static/media/ww.jpg": "/ga/static/media/ww.9afe7cbd892ef2d55dd8.jpg",
     "static/media/offer-2.png": "/ga/static/media/offer-2.961a4bca1071d1a7d279.png",
     "static/media/offer-3.png": "/ga/static/media/offer-3.0da13ad66622449f55fb.png",
     "static/media/offer-1.png": "/ga/static/media/offer-1.163145184ea6af1de69e.png",
     "static/media/offer-4.png": "/ga/static/media/offer-4.74eaf724e4e4499b32eb.png",
     "static/media/background-image.png": "/ga/static/media/background-image.8744529466ab89d35d0d.png",
     "static/media/naturalist-walk.jpg": "/ga/static/media/naturalist-walk.17e405f234c7b14863bb.jpg",
+    "static/media/ChittoorKottaram.jpg": "/ga/static/media/ChittoorKottaram.d1f9894ace13fbb2098e.jpg",
     "static/media/wellness-therapies-building.png": "/ga/static/media/wellness-therapies-building.42ea8355016dff249663.png",
+    "static/media/coconutlagoon.jpg": "/ga/static/media/coconutlagoon.8acf28650f1592d38b3b.jpg",
     "static/media/butterfly-garden.jpg": "/ga/static/media/butterfly-garden.47c296087ff2b89e73ba.jpg",
     "static/media/wellness-herbs-oils.png": "/ga/static/media/wellness-herbs-oils.f8773f77120da66a6e33.png",
     "static/media/owl-spotting.jpg": "/ga/static/media/owl-spotting.da0ae50a016c79ada775.jpg",
@@ -56,11 +59,11 @@
     "static/media/marari logo.png": "/ga/static/media/marari logo.49292f6a66f2597c6a32.png",
     "static/media/parking.svg": "/ga/static/media/parking.fb46de772a75911687b06dcc1ab0328f.svg",
     "index.html": "/ga/index.html",
-    "main.f772b7fe.css.map": "/ga/static/css/main.f772b7fe.css.map",
-    "main.47402cb9.js.map": "/ga/static/js/main.47402cb9.js.map"
+    "main.4fc65006.css.map": "/ga/static/css/main.4fc65006.css.map",
+    "main.da08033b.js.map": "/ga/static/js/main.da08033b.js.map"
   },
   "entrypoints": [
-    "static/css/main.f772b7fe.css",
-    "static/js/main.47402cb9.js"
+    "static/css/main.4fc65006.css",
+    "static/js/main.da08033b.js"
   ]
 }

@@ -1,13 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './other-destinations.css';
+import chittoorKottaramImage from '../assets/images/imagesmarari/ChittoorKottaram.jpg';
+import coconutLagoonImage from '../assets/images/imagesmarari/coconutlagoon.jpg';
+import wayanadWildImage from '../assets/images/imagesmarari/ww.jpg';
 
 const OtherDestinations: React.FC = () => {
   const navigate = useNavigate();
   const destinations = [
     {
       id: 1,
-      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800',
+      image: chittoorKottaramImage,
       title: 'Chittoor Kottaram',
       description: 'The historic town of Fort Kochi is just an hour away by road or boat from Chittoor Kottaram.The historic town of Fort Kochi is just an hour away by road or boat from Chittoor Kottaram.The historic town of Fort Kochi is just an hour away by road or boat from Chittoor Kottaram.',
       url: 'https://www.cghearth.com/chittoor-kottaram',
@@ -15,15 +18,15 @@ const OtherDestinations: React.FC = () => {
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800',
-      title: 'Coconut Kottaram',
+      image: coconutLagoonImage,
+      title: 'Coconut Lagoon',
       description: 'The historic town of Fort Kochi is just an hour away by road or boat from Kottaram.The historic town of Fort Kochi is just an hour away by road or boat from Kottaram.The historic town of Fort Kochi is just an hour away by road or boat from Kottaram.',
       url: 'https://www.cghearth.com/coconut-lagoon',
       bookUrl: 'https://bookings.cghearth.com/?chainId=8850&propertyId=8856&_gl=1*10pyucx*_gcl_au*MTMxMDQ5MDI0NC4xNzcxMjE4OTE2*_ga*MTg5Mjk5Nzc5NC4xNzcxMjE4OTE2*_ga_0F7F08WNW0*czE3NzEyMjM4NjYkbzIkZzEkdDE3NzEyMjU1NDEkajIyJGwwJGgw'
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800',
+      image: wayanadWildImage,
       title: 'WAYANAD WILD',
       description: 'Experience the rich cultural heritage and traditional architecture of Kerala.Experience the rich cultural heritage and traditional architecture of Kerala.Experience the rich cultural heritage and traditional architecture of Kerala.',
       url: 'https://www.cghearth.com/wayanad-wild',
