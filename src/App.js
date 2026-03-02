@@ -35,6 +35,7 @@ import GuestServices from './pages/guest-services.tsx';
 import Facilities from './pages/facilities.tsx';
 import Message from './pages/message.tsx';
 import Housekeeping from './pages/housekeeping.tsx';
+import MyRequests from './pages/my-requests.tsx';
 import './App.css';
 
 function App() {
@@ -92,6 +93,7 @@ function App() {
               <Route path="facilities" element={<PageLayout><Facilities /></PageLayout>} />
               <Route path="housekeeping" element={<PageLayout><Housekeeping /></PageLayout>} />
               <Route path="message" element={<PageLayout><Message /></PageLayout>} />
+              <Route path="my-requests" element={<PageLayout><MyRequests /></PageLayout>} />
               <Route path="highlights" element={<PageLayout><div className="highlights-page">Highlights page coming soon...</div></PageLayout>} />
               <Route path="*" element={<Navigate to="." replace />} />
             </Route>

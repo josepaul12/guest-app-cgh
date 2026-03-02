@@ -21,6 +21,9 @@ const Housekeeping: React.FC = () => {
   const [services, setServices] = useState<ServiceItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [resolvedCompanyId, setResolvedCompanyId] = useState<string>('');
+  const [resolvedSiteId, setResolvedSiteId] = useState<string>('');
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
   useEffect(() => {
     fetchServices();
@@ -106,6 +109,9 @@ const Housekeeping: React.FC = () => {
       const isRoot = true;
       const companyIdParam = companyId || '';
       const siteIdParam = siteId || '';
+
+      setResolvedCompanyId(companyIdParam);
+      setResolvedSiteId(siteIdParam);
 
       const url = `https://demo.wo.instio.co/api/wo-attributes?companyId=${encodeURIComponent(companyIdParam)}&siteId=${encodeURIComponent(siteIdParam)}&isRoot=${isRoot}`;
 
@@ -197,13 +203,97 @@ const Housekeeping: React.FC = () => {
     setSelectedService(null);
   };
 
-  const handleSubmit = () => {
-    // Handle form submission
-    console.log('Service:', selectedService);
-    console.log('Notes:', notes);
-    // You can add API call here
-    alert('Housekeeping request submitted successfully!');
-    handleClear();
+  const handleSubmit = async () => {
+    if (!selectedService) return;
+
+    try {
+      setSubmitting(true);
+
+      const timelineId = sessionStorage.getItem('timelineId') || '';
+      const reservationId = sessionStorage.getItem('reservationId') || '';
+      const crmId = sessionStorage.getItem('crmId') || '';
+      const customerIdHeader =
+        sessionStorage.getItem('customerId') ||
+        crmId ||
+        reservationId ||
+        '';
+
+      const companyId =
+        resolvedCompanyId ||
+        sessionStorage.getItem('companyId') ||
+        localStorage.getItem('companyCRMId') ||
+        '';
+      const siteId =
+        resolvedSiteId ||
+        sessionStorage.getItem('siteId') ||
+        localStorage.getItem('siteId') ||
+        '';
+
+      const selected = services.find((s) => getServiceId(s) === selectedService) || null;
+      const serviceName = selected ? getServiceName(selected) : selectedService;
+      const serviceId = (selected?._id || selected?.id || selectedService) as string;
+
+      // Best-effort location from reservation info (room)
+      let location = '';
+      const reservationInfoStr = sessionStorage.getItem('reservationInfo');
+      if (reservationInfoStr) {
+        try {
+          const data = JSON.parse(reservationInfoStr);
+          const rooms = data?.data?.rooms ?? data?.rooms ?? [];
+          const firstRoom = Array.isArray(rooms) && rooms.length > 0 ? rooms[0] : null;
+          const room =
+            firstRoom?.room ??
+            data?.data?.room ??
+            data?.room ??
+            data?.data?.reservation?.room ??
+            data?.reservation?.room ??
+            '';
+          if (room) location = String(room);
+        } catch {
+          // ignore parse error
+        }
+      }
+
+      const payload = {
+        companyId,
+        siteId,
+        description: notes || '',
+        guestReferenceId: reservationId || '',
+        initiatedById: reservationId || '',
+        location,
+        notifyCustomer: true,
+        priority: 10,
+        referenceId: crmId || '',
+        service: serviceName,
+        serviceId,
+        source: 'PMS',
+        timelineId,
+        workOrderType: 'HOUSEKEEPING',
+      };
+
+      const response = await fetch('https://demo.wo.instio.co/api/customer/wo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          customerid: customerIdHeader,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const text = await response.text().catch(() => '');
+        throw new Error(`WO create failed: ${response.status} ${response.statusText}${text ? ` - ${text}` : ''}`);
+      }
+
+      await response.json().catch(() => null);
+      alert('Housekeeping request submitted successfully!');
+      handleClear();
+    } catch (err) {
+      console.error('Error submitting work order:', err);
+      alert('Failed to submit housekeeping request. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -303,9 +393,9 @@ const Housekeeping: React.FC = () => {
           className="housekeeping-submit-button"
           onClick={handleSubmit}
           aria-label="Submit"
-          disabled={!selectedService}
+          disabled={!selectedService || submitting}
         >
-          Submit
+          {submitting ? 'Submitting…' : 'Submit'}
         </button>
       </div>
     </div>

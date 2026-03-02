@@ -6,6 +6,7 @@ const GuestServices: React.FC = () => {
   const navigate = useNavigate();
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [notes, setNotes] = useState<string>('');
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
   const handleServiceSelect = (service: string) => {
     setSelectedService(service);
@@ -16,13 +17,125 @@ const GuestServices: React.FC = () => {
     setSelectedService(null);
   };
 
-  const handleSubmit = () => {
-    // Handle form submission
-    console.log('Service:', selectedService);
-    console.log('Notes:', notes);
-    // You can add API call here
-    alert('Service request submitted successfully!');
-    handleClear();
+  const handleSubmit = async () => {
+    if (!selectedService) return;
+
+    try {
+      setSubmitting(true);
+
+      const timelineId = sessionStorage.getItem('timelineId') || '';
+      const reservationId = sessionStorage.getItem('reservationId') || '';
+      const crmId = sessionStorage.getItem('crmId') || '';
+
+      // Resolve companyId and siteId (similar to housekeeping)
+      let companyId = sessionStorage.getItem('companyId') || localStorage.getItem('companyCRMId') || '';
+      let siteId = sessionStorage.getItem('siteId') || localStorage.getItem('siteId') || '';
+
+      if (!companyId || !siteId) {
+        const reservationInfoStr = sessionStorage.getItem('reservationInfo');
+        if (reservationInfoStr) {
+          try {
+            const reservationInfo = JSON.parse(reservationInfoStr);
+            const extractedCompanyId =
+              reservationInfo?.data?.companyId ??
+              reservationInfo?.companyId ??
+              reservationInfo?.data?.reservation?.companyId ??
+              reservationInfo?.reservation?.companyId;
+            const extractedSiteId =
+              reservationInfo?.data?.siteId ??
+              reservationInfo?.siteId ??
+              reservationInfo?.data?.reservation?.siteId ??
+              reservationInfo?.reservation?.siteId;
+
+            if (extractedCompanyId && !companyId) {
+              companyId = extractedCompanyId;
+              sessionStorage.setItem('companyId', extractedCompanyId);
+            }
+            if (extractedSiteId && !siteId) {
+              siteId = extractedSiteId;
+              sessionStorage.setItem('siteId', extractedSiteId);
+              localStorage.setItem('siteId', extractedSiteId);
+            }
+          } catch {
+            // ignore parse error
+          }
+        }
+      }
+
+      const customerIdHeader =
+        sessionStorage.getItem('customerId') ||
+        crmId ||
+        reservationId ||
+        '';
+
+      const serviceName =
+        selectedService === 'taxi'
+          ? 'Taxi Service'
+          : selectedService === 'engineering'
+          ? 'Engineering Service'
+          : selectedService;
+
+      // Best-effort location from reservation info (room)
+      let location = '';
+      const reservationInfoStr = sessionStorage.getItem('reservationInfo');
+      if (reservationInfoStr) {
+        try {
+          const data = JSON.parse(reservationInfoStr);
+          const rooms = data?.data?.rooms ?? data?.rooms ?? [];
+          const firstRoom = Array.isArray(rooms) && rooms.length > 0 ? rooms[0] : null;
+          const room =
+            firstRoom?.room ??
+            data?.data?.room ??
+            data?.room ??
+            data?.data?.reservation?.room ??
+            data?.reservation?.room ??
+            '';
+          if (room) location = String(room);
+        } catch {
+          // ignore parse error
+        }
+      }
+
+      const payload = {
+        companyId,
+        siteId,
+        description: notes || '',
+        guestReferenceId: reservationId || '',
+        initiatedById: reservationId || '',
+        location,
+        notifyCustomer: true,
+        priority: 10,
+        referenceId: crmId || '',
+        service: serviceName,
+        serviceId: selectedService,
+        source: 'PMS',
+        timelineId,
+        workOrderType: 'REQUEST',
+      };
+
+      const response = await fetch('https://demo.wo.instio.co/api/customer/wo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          customerid: customerIdHeader,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const text = await response.text().catch(() => '');
+        throw new Error(`WO create failed: ${response.status} ${response.statusText}${text ? ` - ${text}` : ''}`);
+      }
+
+      await response.json().catch(() => null);
+      alert('Service request submitted successfully!');
+      handleClear();
+    } catch (err) {
+      console.error('Error submitting service request:', err);
+      alert('Failed to submit service request. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -104,9 +217,9 @@ const GuestServices: React.FC = () => {
           className="guest-services-submit-button"
           onClick={handleSubmit}
           aria-label="Submit"
-          disabled={!selectedService}
+          disabled={!selectedService || submitting}
         >
-          Submit
+          {submitting ? 'Submitting…' : 'Submit'}
         </button>
       </div>
     </div>
