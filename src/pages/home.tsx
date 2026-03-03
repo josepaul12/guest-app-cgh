@@ -166,66 +166,22 @@ const Home: React.FC = () => {
       </header>
 
       <main className="home-content" ref={contentRef}>
-        <div className="grid two-cols">
-          <Card title="Welcome" image={welcomeImage} size="medium" onClick={() => navigate('/welcome')} />
-          <Card title="Gallery" image={galleryImage} size="medium" onClick={() => navigate('/gallery')} />
+        <div className="home-tiles">
+          <Card title="Welcome" image={welcomeImage} hasOverlay align="center" noLabelBackground onClick={() => navigate('/welcome')} />
+          <Card title="Special Offers" image={offerImage} hasOverlay align="center" noLabelBackground onClick={() => navigate('/offers')} />
+          <Card title="Experiences" image={experiencesImage} hasOverlay align="center" noLabelBackground onClick={() => navigate('/experience')} />
+          <Card title="Food & drinks" image={foodDrinksImage} hasOverlay align="center" noLabelBackground onClick={() => navigate('/food-and-drinks')} />
+          <Card title="About" image={aboutImage} hasOverlay align="center" noLabelBackground onClick={() => navigate('/about')} />
+          <Card title="Guest Services" image={guestServicesImage} hasOverlay align="center" noLabelBackground onClick={() => navigate('/guest-services')} />
+          <Card title="Ayurveda" image={ayurvedaImage} hasOverlay align="center" noLabelBackground onClick={() => navigate('/ayurveda')} />
+          <Card title="Facilities" image={facilitiesImage} hasOverlay align="center" noLabelBackground onClick={() => navigate('/facilities')} />
+          <Card title="Rooms" image={roomsImage} hasOverlay align="center" noLabelBackground onClick={() => navigate('/rooms')} />
+          <Card title="Housekeeping" image={housekeepingImage} hasOverlay align="center" noLabelBackground onClick={() => navigate('/housekeeping')} />
+          <Card title="Stories" image={storiesImage} hasOverlay align="center" noLabelBackground onClick={() => navigate('/stories')} />
+          <Card title="Other Destination" image={otherDestinationImage} hasOverlay align="center" noLabelBackground onClick={() => navigate('/other-destinations')} />
+          <Card title="Wellness & Healthcare" image={wellnessHealthcareImage} hasOverlay align="center" noLabelBackground onClick={() => navigate('/wellness')} />
+          <Card title="Gallery" image={galleryImage} hasOverlay align="center" noLabelBackground onClick={() => navigate('/gallery')} />
         </div>
-
-        <Card
-          title="Special Offers On Our Garden Villa With Pool"
-          image={offerImage}
-          size="banner"
-          align="center"
-          hasOverlay={true}
-          noLabelBackground={true}
-          labelClassName="font-caslon"
-          onClick={() => navigate('/offers')}
-        />
-
-        <div className="grid two-cols">
-          <Card title="Experiences" image={experiencesImage} onClick={() => navigate('/experience')} />
-          <Card title="Food & drinks" image={foodDrinksImage} onClick={() => navigate('/food-and-drinks')} />
-        </div>
-
-        <div className="grid three-cols three-cols-fixed">
-          <Card title="About" image={aboutImage} size="small" onClick={() => navigate('/about')} />
-          <Card title="Guest Services" image={guestServicesImage} size="small" onClick={() => navigate('/guest-services')} />
-          <Card title="Facilities" image={facilitiesImage} size="small" onClick={() => navigate('/facilities')} />
-        </div>
-
-        <Card 
-          title="Ayurveda" 
-          image={ayurvedaImage} 
-          size="banner" 
-          align="center"
-          hasOverlay={true}
-          noLabelBackground={true}
-          labelClassName="font-caslon"
-          onClick={() => navigate('/ayurveda')}
-        />
-
-        <div className="grid two-cols">
-          <Card title="Rooms" image={roomsImage} onClick={() => navigate('/rooms')} />
-          <Card title="Housekeeping" image={housekeepingImage} onClick={() => navigate('/housekeeping')} />
-        </div>
-
-        <Card 
-          title="Stories" 
-          image={storiesImage} 
-          size="banner" 
-          align="center"
-          hasOverlay={true}
-          noLabelBackground={true}
-          labelClassName="font-caslon"
-          onClick={() => navigate('/stories')}
-        />
-
-        <div className="grid two-cols">
-          <Card title="Other Destination" image={otherDestinationImage} onClick={() => navigate('/other-destinations')} />
-          <Card title="Wellness & Healthcare" image={wellnessHealthcareImage} onClick={() => navigate('/wellness')} />
-        </div>
-
-       
       </main>
 
       {showScrollArrow && (

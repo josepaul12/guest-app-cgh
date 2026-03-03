@@ -62,6 +62,7 @@
   color: #FFFFFF;
 }
 
+/* Active tab only: inverse color #302F27 for icon + label */
 .nav-tab.active {
   color: #302F27;
   font-weight: 500;
@@ -72,7 +73,19 @@
   fill: #302F27;
 }
 
-/* Keep home icon stroke-only */
+.nav-tab.active .nav-icon path {
+  stroke: #302F27;
+  fill: inherit;
+}
+
+/* Highlights icon when active: fill only, dark */
+.nav-tab.active .nav-icon-highlights,
+.nav-tab.active .nav-icon-highlights path {
+  stroke: none !important;
+  fill: #302F27;
+}
+
+/* Keep home icon stroke-only (no fill) */
 .nav-tab:first-child .nav-icon,
 .nav-tab:first-child.active .nav-icon {
   fill: none;
@@ -80,6 +93,19 @@
 
 .nav-tab:first-child .nav-icon path {
   fill: none;
+}
+
+/* Highlights icon: fill only, no stroke */
+.nav-icon-highlights,
+.nav-icon-highlights path {
+  stroke: none !important;
+  fill: currentColor;
+}
+
+.bottom-navigation.message-active .nav-tab:not(.active) .nav-icon-highlights,
+.bottom-navigation.message-active .nav-tab:not(.active) .nav-icon-highlights path {
+  stroke: none !important;
+  fill: currentColor;
 }
 
 /* When Message is active, make other items white */
