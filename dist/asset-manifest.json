@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/ga/static/css/main.a4dc4559.css",
+    "main.css": "/ga/static/css/main.e28e2cfb.css",
     "main.js": "/ga/static/js/main.12904c9a.js",
     "static/media/ww.jpg": "/ga/static/media/ww.9afe7cbd892ef2d55dd8.jpg",
     "static/media/offer-2.png": "/ga/static/media/offer-2.961a4bca1071d1a7d279.png",
@@ -59,11 +59,11 @@
     "static/media/marari logo.png": "/ga/static/media/marari logo.49292f6a66f2597c6a32.png",
     "static/media/parking.svg": "/ga/static/media/parking.fb46de772a75911687b06dcc1ab0328f.svg",
     "index.html": "/ga/index.html",
-    "main.a4dc4559.css.map": "/ga/static/css/main.a4dc4559.css.map",
+    "main.e28e2cfb.css.map": "/ga/static/css/main.e28e2cfb.css.map",
     "main.12904c9a.js.map": "/ga/static/js/main.12904c9a.js.map"
   },
   "entrypoints": [
-    "static/css/main.a4dc4559.css",
+    "static/css/main.e28e2cfb.css",
     "static/js/main.12904c9a.js"
   ]
 }
