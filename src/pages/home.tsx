@@ -45,9 +45,6 @@ const Card: React.FC<CardProps> = ({ title, image, size = 'medium', align = 'lef
   );
 };
 
-const API_BASE = 'https://demo.pms.instio.co/api/pms/v2';
-const JSON_HEADERS = { 'Content-Type': 'application/json' };
-
 const Home: React.FC = () => {
   const { navigate } = useAppNavigation();
   const { timelineId: paramTimelineId, reservationId: paramReservationId, crmId: paramCrmId } = useParams();
@@ -67,55 +64,6 @@ const Home: React.FC = () => {
         sessionStorage.setItem('crmId', crmId);
       }
     }
-  }, [timelineId, reservationId, crmId]);
-
-  // Call timeline and reservation GET APIs when loading home page
-  useEffect(() => {
-    if (!timelineId || !reservationId) return;
-
-    const fetchTimelineInfo = async () => {
-      try {
-        const url = `${API_BASE}/timeline/${timelineId}/info`;
-        const res = await fetch(url, { method: 'GET', headers: JSON_HEADERS });
-        if (!res.ok) throw new Error(`Timeline API error: ${res.status}`);
-        const data = await res.json();
-        if (data) sessionStorage.setItem('timelineInfo', JSON.stringify(data));
-      } catch (err) {
-        console.error('Error fetching timeline info:', err);
-      }
-    };
-
-    const fetchReservationInfo = async () => {
-      const companyCRMId = crmId || timelineId || '';
-      if (!companyCRMId) return;
-      try {
-        const url = `${API_BASE}/reservation/${reservationId}/${companyCRMId}/info`;
-        const res = await fetch(url, { method: 'GET', headers: JSON_HEADERS });
-        if (!res.ok) throw new Error(`Reservation API error: ${res.status}`);
-        const data = await res.json();
-        sessionStorage.setItem('reservationInfo', JSON.stringify(data));
-        const firstName = data?.data?.firstName || data?.firstName || data?.guest?.firstName || data?.guestInfo?.firstName || '';
-        if (firstName) {
-          localStorage.setItem('userFirstName', firstName);
-          window.dispatchEvent(new Event('storage'));
-        }
-        if (crmId) localStorage.setItem('companyCRMId', crmId);
-        const companyId = data?.data?.companyId || data?.companyId || data?.data?.reservation?.companyId || data?.reservation?.companyId || '';
-        if (companyId) {
-          sessionStorage.setItem('companyId', companyId);
-          localStorage.setItem('companyCRMId', companyId);
-        }
-        const siteId = data?.data?.siteId || data?.siteId || data?.data?.reservation?.siteId || data?.reservation?.siteId || '';
-        if (siteId) {
-          sessionStorage.setItem('siteId', siteId);
-          localStorage.setItem('siteId', siteId);
-        }
-      } catch (err) {
-        console.error('Error fetching reservation info:', err);
-      }
-    };
-
-    fetchTimelineInfo().then(() => fetchReservationInfo());
   }, [timelineId, reservationId, crmId]);
 
   useEffect(() => {
